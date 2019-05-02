@@ -38,4 +38,19 @@ CustomerService.prototype.myOrders = function(id ,callback){
 };
 
 
+CustomerService.prototype.addCustomer = function(customerData,success, error){
+    this.customerDAO.getNextSequenceValue('customerid', (generatedID) =>{
+        customerData['customerID'] = generatedID[0]['sequence_value'];
+        console.log(customerData);
+
+        this.customerDAO.insert("customerData", customerData, ()=>{success()})
+    });
+
+};
+
+CustomerService.prototype.addOrder = function(newOrder, success, error){
+  //TODO
+};
+
+
 module.exports = CustomerService;

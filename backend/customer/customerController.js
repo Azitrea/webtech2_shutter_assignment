@@ -24,12 +24,19 @@ router.get('/order/:id/myOrders', (req, res) => {
         res.status(200).send(result);
     })
 });
-router.post('/submitOrder', (req, res) =>{
 
+//Add new customer to database
+router.post('/addCustomer', (req, res) => {
+    customerService.addCustomer(req.body,
+        () => {res.status(200).send("New user added to database")},
+        (cause) => {res.status(400).send(cause)})
 });
 
-router.post('/addCustomer', (req, res) => {
-
+//Add new order to database
+router.post('/submitOrder', (req, res) =>{
+    customerService.addOrder(req.body,
+        () => {res.status(200).send("New order added to database")},
+        (cause) => {res.status(400).send(cause)})
 });
 
 module.exports = router;

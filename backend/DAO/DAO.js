@@ -7,7 +7,7 @@ const url = 'mongodb://localhost:27017';
 
 // Database Name
 const dbName = 'shutterAssignment';
-const collectionName = 'customerData';
+//const collectionName = 'customerData';
 // Create a new MongoClient
 
 /* Mongo DB Ends*/
@@ -16,10 +16,9 @@ function read(coll, findParams, callback){
     var client = new MongoClient(url);
     client.connect((err)=>{
         assert.equal(null, err);
-        //console.log("Connected successfully to server");
 
         const db = client.db(dbName);
-        const collection= db.collection(coll)
+        const collection= db.collection(coll);
 
         collection.find(findParams).toArray(function(err, docs) {
             assert.equal(err, null);
@@ -37,14 +36,13 @@ function readWithFilter(coll ,filter, callback){
     read(coll , filter, (result) => {callback(result)})
 }
 
-function create(data,callback){
+function insert(coll, data,callback){
     var client = new MongoClient(url);
     client.connect((err)=>{
         assert.equal(null, err);
-        //console.log("Connected successfully to server");
 
         const db = client.db(dbName);
-        const collection= db.collection(collectionName)
+        const collection= db.collection(coll);
 
         collection.insertOne(data,(err,r)=>{
             assert.equal(null, err);
@@ -55,9 +53,34 @@ function create(data,callback){
     })
 }
 
+function getNextSequenceValue(sequenceName, callback){
+    var client = new MongoClient(url);
+    client.connect((err)=> {
+        assert.equal(null, err);
+
+        const db = client.db(dbName);
+        const collection= db.collection("counters");
+
+        collection.find({"_id":sequenceName}).toArray(function(err, docs) {
+            collection.updateOne({"_id":sequenceName}, {$inc:{"sequence_value":1}});
+            assert.equal(err, null);
+            callback(docs);
+        });
+    });
+}
+
+function update(data, callback){
+    //TODO
+}
+
+function remove(data, callback){
+    //TODO
+}
+
 
 module.exports = {
-    "create" : create,
+    "insert" : insert,
     "readAll" : readAll,
-    "readWithFilter" : readWithFilter
+    "readWithFilter" : readWithFilter,
+    "getNextSequenceValue" : getNextSequenceValue
 };
