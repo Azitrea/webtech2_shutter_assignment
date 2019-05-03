@@ -8,5 +8,11 @@ function ManagerService(DAO){
     }
 }
 
+ManagerService.prototype.listAll = function(coll ,callback){
+    this.DAO.readAll(coll,(requests) => {
+        callback(requests)
+    })
+};
+
 
 module.exports = ManagerService;
