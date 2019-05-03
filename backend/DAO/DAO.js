@@ -34,8 +34,8 @@ function readWithFilter(coll ,filter, callback){
     read(coll , filter, (result) => {callback(result)})
 }
 
-//Insert int doatabase
-function insert(coll, data,callback){
+//InsertOne into doatabase
+function insertOne(coll, data,callback){
     var client = new MongoClient(url);
     client.connect((err)=>{
         assert.equal(null, err);
@@ -46,6 +46,23 @@ function insert(coll, data,callback){
         collection.insertOne(data,(err,r)=>{
             assert.equal(null, err);
             assert.equal(1, r.insertedCount);
+            client.close();
+            callback()
+        })
+    })
+}
+
+//InsertMany into doatabase
+function insertMany(coll, data,callback){
+    var client = new MongoClient(url);
+    client.connect((err)=>{
+        assert.equal(null, err);
+
+        const db = client.db(dbName);
+        const collection= db.collection(coll);
+
+        collection.insertMany(data,(err,r)=>{
+            assert.equal(null, err);
             client.close();
             callback()
         })
@@ -93,7 +110,8 @@ function remove(data, callback){
 
 
 module.exports = {
-    "insert" : insert,
+    "insertMany" : insertMany,
+    "insertOne" : insertOne,
     "readAll" : readAll,
     "readWithFilter" : readWithFilter,
     "getNextSequenceValue" : getNextSequenceValue,

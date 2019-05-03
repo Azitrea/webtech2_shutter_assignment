@@ -4,7 +4,7 @@ var router = express.Router();
 var Srs = require('./customerService');
 const customerService = new Srs();
 
-//List everything from database by given databaseName , This is temporary
+//List everything from database by given databaseName
 router.get('/list/:id', (req, res) => {
     customerService.listAll(req.params['id'], (result) => {
         res.status(200).send(result);
@@ -34,7 +34,7 @@ router.post('/addCustomer', (req, res) => {
 
 //Add new order to database
 router.post('/submitOrder', (req, res) =>{
-    customerService.addOrder(req.body,
+    customerService.submitOrder(req.body,
         () => {res.status(200).send("New order added to database")},
         (cause) => {res.status(400).send(cause)})
 });
