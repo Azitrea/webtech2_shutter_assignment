@@ -70,20 +70,20 @@ function insertMany(coll, data,callback){
 }
 
 //Get generated id
-function getNextSequenceValue(sequenceName, callback){
-    var client = new MongoClient(url);
-    client.connect((err)=> {
-        assert.equal(null, err);
+function getNextSequenceValue(sequenceName){
+    return new Promise( async resolve =>{
+        var client = new MongoClient(url);
+        await client.connect((err)=> {
+            assert.equal(null, err);
 
-        const db = client.db(dbName);
-        const collection= db.collection("counters");
+            const db = client.db(dbName);
+            const collection= db.collection("counters");
 
-        collection.find({"_id":sequenceName}).toArray(function(err, docs) {
-            collection.updateOne({"_id":sequenceName}, {$inc:{"sequence_value":1}});
-            assert.equal(err, null);
-            callback(docs);
+            collection.updateOne({"_id":sequenceName}, {$inc:{"sequence_value":1}},() =>{
+                resolve(collection.find({"_id":sequenceName}).toArray());
+            });
         });
-    });
+    })
 }
 
 //Update data

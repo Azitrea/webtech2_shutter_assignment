@@ -18,9 +18,16 @@ router.get('/order/:id', (req, res) => {
     })
 });
 
-//List user ordersv
+//List user orders
 router.get('/order/:id/myOrders', (req, res) => {
     customerService.myOrders(req.params['id'], (result) => {
+        res.status(200).send(result);
+    })
+});
+
+//List ordered shutters by order id
+router.get('/order/:id/myOrders/:orderid', (req, res) => {
+    customerService.myOrdersById(req.params['id'],req.params['orderid'], (result) => {
         res.status(200).send(result);
     })
 });
@@ -28,14 +35,14 @@ router.get('/order/:id/myOrders', (req, res) => {
 //Add new customer to database
 router.post('/addCustomer', (req, res) => {
     customerService.addCustomer(req.body,
-        () => {res.status(200).send("New user added to database")},
+        (id) => {res.status(200).send(`New user added to database. ID: ${id}`)},
         (cause) => {res.status(400).send(cause)})
 });
 
 //Add new order to database
 router.post('/submitOrder', (req, res) =>{
     customerService.submitOrder(req.body,
-        () => {res.status(200).send("New order added to database")},
+        (id) => {res.status(200).send(`New order added to database. Order ID: ${id}`)},
         (cause) => {res.status(400).send(cause)})
 });
 
