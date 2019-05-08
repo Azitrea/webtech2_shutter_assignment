@@ -4,11 +4,18 @@ var router = express.Router();
 var Srs = require('./workerService');
 const workerService = new Srs();
 
-//List orders
-router.get('/listOrders', (req, res) => {
-    workerService.listAll("orderedShutters", (result) => {
+//List orders available for assembling
+router.get('/listOrderIDs', (req, res) => {
+   workerService.listOrderIDs((result) => {
+      res.status(200).send(result);
+   });
+});
+
+//List all shutters in the order
+router.get('/listShutters/:id', (req, res) => {
+    workerService.listShutters(req.params['id'],(result) => {
         res.status(200).send(result);
-    })
+    });
 });
 
 //SetJobStatus

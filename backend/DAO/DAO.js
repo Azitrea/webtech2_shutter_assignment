@@ -103,6 +103,22 @@ function updateOne(coll, select, data, callback){
     })
 }
 
+function updateArray(coll, select, data, filter, callback){
+    var client = new MongoClient(url);
+    client.connect((err)=>{
+        assert.equal(null, err);
+
+        const db = client.db(dbName);
+        const collection= db.collection(coll);
+
+        collection.updateOne(select, data, filter,(err,r)=>{
+            assert.equal(null, err);
+            client.close();
+            callback()
+        })
+    })
+}
+
 //Remove data from database
 function remove(data, callback){
     //TODO
@@ -115,5 +131,6 @@ module.exports = {
     "readAll" : readAll,
     "readWithFilter" : readWithFilter,
     "getNextSequenceValue" : getNextSequenceValue,
+    "updateArray": updateArray,
     "updateOne": updateOne
 };

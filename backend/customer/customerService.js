@@ -104,6 +104,7 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
                 orderedShutters[i]["_id"] = generatedShutterID[0]['sequence_value'].toString();
                 orderedShutters[i]["orderID"] = generatedOrderID;
                 orderedShutters[i]["customerID"] = newOrder["customerID"];
+                orderedShutters[i]["status"] = "Available";
             }
             this.DAO.insertMany("orderedShutters", orderedShutters, () => {
                 if (success) {
