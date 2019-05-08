@@ -28,8 +28,8 @@ CustomerService.prototype.myOrders = function (id, callback) {
             if (requests[0]['orderIDs'].length !== 0) {
                 var orderIDs = requests[0]['orderIDs'];
                 var orderFilterString = [];
-                for (let entity of orderIDs) {
-                    orderFilterString.push(Object.keys(entity)[0]);
+                for (let ids of orderIDs) {
+                    orderFilterString.push(ids['OrderID']);
                 }
                 callback(orderFilterString);
 
@@ -44,16 +44,15 @@ CustomerService.prototype.myOrders = function (id, callback) {
 
 //List all orders for that user by orderId
 CustomerService.prototype.myOrdersById = function (id, orID, callback) {
-    console.log(id, orID);
     this.DAO.readWithFilter("customerData", {"_id": id}, (requests) => {
-        console.log(requests);
         if (requests.length !== 0) {
             if (requests[0]['orderIDs'].length !== 0) {
-                const objKeys = [];
-                for (let ids of requests[0]['orderIDs']) {
-                    objKeys.push(Object.keys(ids)[0]);
+                var orderIDs = requests[0]['orderIDs'];
+                const idList = [];
+                for (let ids of orderIDs) {
+                    idList.push(ids['OrderID']);
                 }
-                if ((objKeys.indexOf(orID) > -1)) {
+                if ((idList.indexOf(orID) > -1)) {
                     this.DAO.readWithFilter("orderedShutters", {"orderID": orID}, (requests) => {
                         callback(requests);
                     });
@@ -98,33 +97,54 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
             const getNextSequenceValueResult = await this.DAO.getNextSequenceValue('orderid');
             const generatedOrderID = getNextSequenceValueResult[0]['sequence_value'].toString();
 
-            for (let i in orderedShutters) {
-                const generatedShutterID = await this.DAO.getNextSequenceValue('orderedshutterid');
+            this.DAO.readAll('shutterType', (resultShutter) => {
+                this.DAO.readWithFilter("Misc", {'_id': "material"}, async (resultMisc) => {
+                    for (let i in orderedShutters) {
+                        const generatedShutterID = await this.DAO.getNextSequenceValue('orderedshutterid');
 
-                orderedShutters[i]["_id"] = generatedShutterID[0]['sequence_value'].toString();
-                orderedShutters[i]["orderID"] = generatedOrderID;
-                orderedShutters[i]["customerID"] = newOrder["customerID"];
-                orderedShutters[i]["status"] = "Available";
-            }
-            this.DAO.insertMany("orderedShutters", orderedShutters, () => {
-                if (success) {
+                        orderedShutters[i]["_id"] = generatedShutterID[0]['sequence_value'].toString();
+                        orderedShutters[i]["orderID"] = generatedOrderID;
+                        orderedShutters[i]["customerID"] = newOrder["customerID"];
+                        orderedShutters[i]["status"] = "Available";
+                        orderedShutters[i]["price"] = this.calculatePrice(orderedShutters[i]['shutterType'], orderedShutters[i]['material'], resultMisc, resultShutter)
+                    }
+                    this.DAO.insertMany("orderedShutters", orderedShutters, () => {
+                        if (success) {
 
-                    const select = {'_id': newOrder['customerID']};
-                    const data = {$push: {'orderIDs': {[generatedOrderID]: "Order Accepted"}}};
+                            const select = {'_id': newOrder['customerID']};
+                            const data = {
+                                $push: {
+                                    'orderIDs': {
+                                        "OrderID": generatedOrderID,
+                                        "status": "Order Accepted"
+                                    }
+                                }
+                            };
 
-                    this.DAO.updateOne("customerData", select, data, () => {
-                        success(generatedOrderID);
-                    })
-                }
-            });
+                            this.DAO.updateOne("customerData", select, data, () => {
+                                success(generatedOrderID);
+                            })
+                        }
+                    });
+                })
+            })
+
         } else {
             error('User is not valid');
         }
     })
 };
 
-CustomerService.prototype.checkForPriceIsValid = function(total, material, shutterType){
-    //TODO check for price
+CustomerService.prototype.calculatePrice = function (shutterType, material, materialsFromDB, shutterTypesFormDB) {
+    let price = 0;
+    for (let sT of shutterTypesFormDB){
+        if (sT['_id'] === shutterType.toString()){
+            price = Number(sT['price']) + Number(materialsFromDB[0]['value'][material]);
+            break;
+        }
+    }
+    return price;
+
 };
 
 module.exports = CustomerService;

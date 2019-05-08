@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8bb0b267-e85c-4607-b68d-8cb10e7c4c0d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DAO/DAO.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DAO/DAO.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/customer/customerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/customer/customerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/customer/customerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/customer/customerService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/manager/managerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/manager/managerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/manager/managerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/manager/managerService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/worker/workerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/worker/workerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/worker/workerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/worker/workerService.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,20 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/DAO/DAO.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/worker/workerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+            <state relative-caret-position="352">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -40,8 +32,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/worker/workerService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="2" lean-forward="true" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+            <state relative-caret-position="197">
+              <caret line="97" column="33" lean-forward="true" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/DAO/DAO.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="97" column="45" lean-forward="true" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -64,13 +65,13 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/backend/server.js" />
-        <option value="$PROJECT_DIR$/backend/manager/managerController.js" />
-        <option value="$PROJECT_DIR$/backend/manager/managerService.js" />
-        <option value="$PROJECT_DIR$/backend/worker/workerService.js" />
-        <option value="$PROJECT_DIR$/backend/worker/workerController.js" />
-        <option value="$PROJECT_DIR$/backend/DAO/DAO.js" />
         <option value="$PROJECT_DIR$/backend/customer/customerController.js" />
+        <option value="$PROJECT_DIR$/backend/DAO/DAO.js" />
+        <option value="$PROJECT_DIR$/backend/worker/workerController.js" />
+        <option value="$PROJECT_DIR$/backend/worker/workerService.js" />
         <option value="$PROJECT_DIR$/backend/customer/customerService.js" />
+        <option value="$PROJECT_DIR$/backend/manager/managerService.js" />
+        <option value="$PROJECT_DIR$/backend/manager/managerController.js" />
       </list>
     </option>
   </component>
@@ -171,7 +172,8 @@
       <workItem from="1556873496754" duration="32217000" />
       <workItem from="1556909998121" duration="2822000" />
       <workItem from="1557142368909" duration="6282000" />
-      <workItem from="1557234327354" duration="26649000" />
+      <workItem from="1557234327354" duration="38764000" />
+      <workItem from="1557309012143" duration="21010000" />
     </task>
     <task id="LOCAL-00001" summary="-basic request methods added to customer">
       <created>1556826101947</created>
@@ -194,11 +196,25 @@
       <option name="project" value="LOCAL" />
       <updated>1556889362866</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Customer service updated">
+      <created>1557268137844</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557268137844</updated>
+    </task>
+    <task id="LOCAL-00005" summary="- Need to fix the workerservice">
+      <created>1557280181063</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1557280181063</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113125000" />
+    <option name="totallyTimeSpent" value="146250000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -213,7 +229,7 @@
     <frame x="1440" y="-2" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19743863" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1995731" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -266,7 +282,9 @@
     <MESSAGE value="-basic request methods added to customer" />
     <MESSAGE value="- add new customer" />
     <MESSAGE value="- customer service added functions:&#10;   - Add customer&#10;   - Add new order&#10;- Bugfix in myOrders function&#10;- DAO updateOne function added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- customer service added functions:&#10;   - Add customer&#10;   - Add new order&#10;- Bugfix in myOrders function&#10;- DAO updateOne function added" />
+    <MESSAGE value="- Customer service updated" />
+    <MESSAGE value="- Need to fix the workerservice" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Need to fix the workerservice" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">
@@ -280,13 +298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="14" lean-forward="true" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -325,50 +336,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/manager/managerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/manager/managerService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/customer/customerService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
+        <state relative-caret-position="345">
+          <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/customer/customerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="367">
+          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/DAO/DAO.js">
+    <entry file="file://$PROJECT_DIR$/backend/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        <state>
+          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/customer/customerService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2055">
+          <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/manager/managerService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/worker/workerService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="2" lean-forward="true" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+        <state relative-caret-position="197">
+          <caret line="97" column="33" lean-forward="true" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/DAO/DAO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="97" column="45" lean-forward="true" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/worker/workerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="352">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>

@@ -15,8 +15,8 @@ WorkerService.prototype.listOrderIDs = function(callback){
           for (let customer of result){
               if (customer['orderIDs'].length !== 0){
                   for (let ids of customer['orderIDs']){
-                      if (Object.values(ids)[0] === "Order Accepted"){
-                          activeOrders.push(Object.keys(ids)[0]);
+                      if (ids['status'] === "Order Accepted"){
+                          activeOrders.push(ids['OrderID']);
                       }
                   }
               }
@@ -65,26 +65,22 @@ WorkerService.prototype.setJobStatus = function(req, success, error){
     }
 };
 
+//Updates the order status when all the shutters are set to Assembling finished
 WorkerService.prototype.updateOrderStatus = function (orderID, callback){
    this.listShutters(orderID, (result) => {
        console.log(orderID);
-       let finished = false;
+       let finished = true;
        for(let order of result){
-           if(order['status'] === 'Assembling finished'){
-               finished = true;
-           } else {
+           if(order['status'] !== 'Assembling finished'){
                finished = false;
            }
        }
        console.log(finished);
        if (finished) {
-           let select = {'_id': result[0]['customerID'], ['orderIDs.' + [orderID]] : "Available"};
-           let s = 'orderIDs.$[].' + orderID + '.$[ID]';
-           console.log(s);
-           let data = {$set: { [s] : 'Ready2'}};
-           let filter = {arrayFilters: [  { "ID": [orderID] } ], multi: true};
+           let select = {'_id': result[0]['customerID'], "orderIDs.OrderID" : orderID};
+           let data = {$set: { "orderIDs.$.status" : 'Ready to Ship'}};
 
-           this.DAO.updateArray("customerData", select, data, filter, (result) => {
+           this.DAO.updateOne("customerData", select, data, (result) => {
                 callback()
            })
        }else {
@@ -93,12 +89,12 @@ WorkerService.prototype.updateOrderStatus = function (orderID, callback){
    })
 }
 
-//List all martials required for the order
+//List all martials required for the Shutter
 WorkerService.prototype.getShutterInfo = function(id, success, error) {
     this.DAO.readWithFilter("orderedShutters", {'_id': id}, (result) => {
         if(result.length !== 0){
-            var keys = ['Window', 'color', 'material', 'comment'];
-            var shutterPartsAndData = {};
+            const keys = ['Window', 'color', 'material', 'comment'];
+            const shutterPartsAndData = {};
             for (let i in keys) {
                 shutterPartsAndData[keys[i]] = result[0][keys[i]];
             }
@@ -115,7 +111,7 @@ WorkerService.prototype.getShutterInfo = function(id, success, error) {
                 }
             })
         } else {
-            error('Order is not existing');
+            error(`Shutter with this ShutterID is not existing: ${id}`);
         }
     })
 };

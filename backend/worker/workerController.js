@@ -12,7 +12,7 @@ router.get('/listOrderIDs', (req, res) => {
 });
 
 //List all shutters in the order
-router.get('/listShutters/:id', (req, res) => {
+router.get('/listOrderIDs/:id', (req, res) => {
     workerService.listShutters(req.params['id'],(result) => {
         res.status(200).send(result);
     });
