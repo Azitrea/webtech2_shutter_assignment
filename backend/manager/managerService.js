@@ -61,9 +61,11 @@ ManagerService.prototype.createInnvoince = function (body, callback) {
     const signature = body['signature']
     this.listReady((result) =>{
         if ((result.indexOf(ordID.toString()) > -1)) {
-            this.getCustomerDataByOrderID(ordID, (result) => {
+            this.getCustomerDataByOrderID(ordID, async (result) => {
                 const keys = ['name', 'email', 'adress', 'phone'];
+                const generatedId = await this.DAO.getNextSequenceValue('invoiceid');
                 const invoice = {};
+                invoice['_id'] = generatedId[0]['sequence_value'];
                 invoice['orderID'] = ordID;
                 invoice['customerID'] = result['_id'];
                 for (let i in keys) {
@@ -86,7 +88,9 @@ ManagerService.prototype.createInnvoince = function (body, callback) {
                     }
                     invoice['totalPrice'] = totalPrice;
                     invoice['signature'] = signature;
-                    callback(invoice);
+                    this.DAO.insertOne('createdInvoices', invoice, (result) =>{
+                        callback(invoice);
+                    })
                 })
             })
         } else {
