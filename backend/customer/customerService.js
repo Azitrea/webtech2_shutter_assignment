@@ -34,7 +34,7 @@ CustomerService.prototype.myOrders = function (id, callback) {
                 callback(orderFilterString);
 
             } else {
-                callback(`No orders found for this user: ${id}`);
+                callback({"status":`No orders found for this user: ${id}`});
             }
         } else {
             callback(`Customer not found: ${id}`);
