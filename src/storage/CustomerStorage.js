@@ -6,6 +6,8 @@ class CustomerStorage extends EventEmitter{
     _customers = [];
     _orderList = [];
     _shutterInfo = [];
+    _oneCustomer = [];
+
 
     emitChange(){
         this.emit('change')

@@ -22,6 +22,13 @@ class CustomerActions{
             payload: {"customerID": customerID, "shutterID": shutterID}
         })
     }
+
+    getUserData(customerID){
+        ShutterDispatcher.handleViewAction({
+            actionType: "getCustomerData",
+            payload: parseInt(customerID)
+        })
+    }
 }
 
 export default new CustomerActions();

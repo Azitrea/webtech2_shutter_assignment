@@ -12,7 +12,7 @@ router.get('/list/:id', (req, res) => {
 });
 
 //Get one user
-router.get('/order/:id', (req, res) => {
+router.get('/getOne/:id', (req, res) => {
     customerService.customer(req.params['id'], (result) => {
         res.status(200).send(result);
     })

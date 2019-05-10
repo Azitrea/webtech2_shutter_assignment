@@ -3,8 +3,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import CustomerStorage from '../storage/CustomerStorage'
-import CustomerOrders from '../components/CustomerOrders'
-import ShutterInfo from '../components/ShutterInfo'
+import CustomerOrders from '../components/CustomerComponents/CustomerOrders'
+import ShutterInfo from '../components/CustomerComponents/ShutterInfo'
+import SelectedCustomer from '../components/CustomerComponents/SelectedCustomer'
 
 class ShutterDispatcher extends Dispatcher {
 
@@ -52,12 +53,11 @@ dispatcher.register((data) => {
     })
         .then(result => {
             CustomerStorage._orderList = result;
-            CustomerStorage._selectedUser = data.payload.payload;
             CustomerStorage.emitChange();
         }).then(() => {
         ReactDOM.render(
             React.createElement(CustomerOrders),
-            document.getElementById('CustomerOrders')
+            document.getElementById('shutterContent')
         );
     });
     CustomerStorage.emitChange();
@@ -82,11 +82,36 @@ dispatcher.register((data) => {
         }).then(() => {
         ReactDOM.render(
             React.createElement(ShutterInfo),
-            document.getElementById('CustomerOrders')
+            document.getElementById('shutterContent')
         );
     });
     CustomerStorage.emitChange();
 });
 
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'getCustomerData') {
+        return;
+    }
+
+    fetch('customer/getOne/'+ data.payload.payload, {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        return response.json()
+    })
+        .then(result => {
+            CustomerStorage._oneCustomer = result;
+            CustomerStorage.emitChange();
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(SelectedCustomer),
+            document.getElementById('shutterContent')
+        );
+        CustomerStorage.emitChange();
+    });
+    CustomerStorage.emitChange();
+});
 
 export default dispatcher;

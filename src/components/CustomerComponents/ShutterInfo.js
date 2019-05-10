@@ -1,13 +1,10 @@
 import React from 'react';
-import CustomerActions from '../actions/CustomerActions'
-import CustomerStorage from '../storage/CustomerStorage'
+import CustomerStorage from '../../storage/CustomerStorage'
 
 class CustomerOrders extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
-        CustomerActions.listCustomers();
         this._onChange = this._onChange.bind(this);
         this.state = {shutterInfo: []}
     }
