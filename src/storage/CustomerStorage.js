@@ -2,7 +2,7 @@ import {EventEmitter} from 'events'
 
 class CustomerStorage extends EventEmitter{
 
-    _selectedUser = null;
+    _selectedCustomer = null;
     _customers = [];
     _orderList = [];
     _shutterInfo = [];

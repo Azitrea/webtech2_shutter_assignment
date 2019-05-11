@@ -15,14 +15,18 @@ CustomerService.prototype.listAll = function (coll, callback) {
 };
 
 //Lists one custome by Id
-CustomerService.prototype.customer = function (id, callback) {
-    this.DAO.readWithFilter("customerData", {"_id": id}, (requests) => {
-        callback(requests)
+CustomerService.prototype.customer = function (id, success, error) {
+    this.DAO.readWithFilter("customerData", {"_id": id}, (response) => {
+        if(response.length !== 0){
+            success(response)
+        } else {
+            error('User not found')
+        }
     })
 };
 
 //Lists user ordersIDs by user Id
-CustomerService.prototype.myOrders = function (id, callback) {
+CustomerService.prototype.myOrders = function (id, success, error) {
     this.DAO.readWithFilter("customerData", {"_id": id}, (requests) => {
         if (requests.length !== 0) {
             if (requests[0]['orderIDs'].length !== 0) {
@@ -31,19 +35,19 @@ CustomerService.prototype.myOrders = function (id, callback) {
                 for (let ids of orderIDs) {
                     orderFilterString.push(ids['OrderID']);
                 }
-                callback(orderFilterString);
+                success(orderFilterString);
 
             } else {
-                callback({"status":`No orders found for this user: ${id}`});
+                error(`No orders found for this user: ${id}`);
             }
         } else {
-            callback(`Customer not found: ${id}`);
+            error(`Customer not found: ${id}`);
         }
     });
 };
 
 //List all orders for that user by orderId
-CustomerService.prototype.myOrdersById = function (id, orID, callback) {
+CustomerService.prototype.myOrdersById = function (id, orID, success, error) {
     this.DAO.readWithFilter("customerData", {"_id": id}, (requests) => {
         if (requests.length !== 0) {
             if (requests[0]['orderIDs'].length !== 0) {
@@ -54,16 +58,16 @@ CustomerService.prototype.myOrdersById = function (id, orID, callback) {
                 }
                 if ((idList.indexOf(orID) > -1)) {
                     this.DAO.readWithFilter("orderedShutters", {"orderID": orID}, (requests) => {
-                        callback(requests);
+                        success(requests);
                     });
                 } else {
-                    callback("This is not your order");
+                    error("This is not your order");
                 }
             } else {
-                callback(`No orders found for this user: ${id}`);
+                error(`No orders found for this user: ${id}`);
             }
         } else {
-            callback(`Customer not found: ${id}`);
+            error(`Customer not found: ${id}`);
         }
     });
 };

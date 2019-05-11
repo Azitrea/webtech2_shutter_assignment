@@ -1,6 +1,8 @@
 import React from 'react';
 import CustomerActions from '../../actions/CustomerActions'
 import CustomerStorage from '../../storage/CustomerStorage'
+import ReactDOM from "react-dom";
+import SelectedCustomer from "./SelectedCustomer";
 
 class CustomerList extends React.Component {
 
@@ -26,7 +28,7 @@ class CustomerList extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-4"> </div>
+                <div className="col-md-4"></div>
                 <div className="card col-4">
                     <div className="card-header">Login</div>
                     <div className="card-body">
@@ -38,19 +40,20 @@ class CustomerList extends React.Component {
                                         <li key={customer._id}
                                             className="list-group-item"
                                             onClick={() => {
-                                                    CustomerStorage._selectedUser = customer._id;
-                                                    CustomerActions.getUserData(customer._id);
-
+                                                CustomerStorage._selectedCustomer = customer._id;
+                                                ReactDOM.render(
+                                                    React.createElement(SelectedCustomer),
+                                                    document.getElementById('shutterContent')
+                                                );
                                             }}>
-                                            {customer._id},
-                                            {customer.name}<br/>
+                                            {customer._id}, {customer.name}<br/>
                                             {customer.email}<br/>
                                         </li>)
                                 })}
                         </ul>
                     </div>
-                    <div className="card-footer"> </div>
-                    <div className="col-md-4"> </div>
+                    <div className="card-footer"></div>
+                    <div className="col-md-4"></div>
                 </div>
             </div>
         )

@@ -11,7 +11,7 @@ class CustomerOrders extends React.Component {
     }
 
     _onChange() {
-        this.setState({selectedUser: CustomerStorage._selectedUser, orderList: CustomerStorage._orderList});
+        this.setState({selectedUser: CustomerStorage._selectedCustomer, orderList: CustomerStorage._orderList});
     }
 
     componentDidMount() {

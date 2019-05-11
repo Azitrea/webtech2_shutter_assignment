@@ -15,6 +15,8 @@ router.get('/list/:id', (req, res) => {
 router.get('/getOne/:id', (req, res) => {
     customerService.customer(req.params['id'], (result) => {
         res.status(200).send(result);
+    }, (cause) => {
+        res.status(404).send({"err": cause})
     })
 });
 
@@ -22,6 +24,8 @@ router.get('/getOne/:id', (req, res) => {
 router.get('/order/:id/myOrders', (req, res) => {
     customerService.myOrders(req.params['id'], (result) => {
         res.status(200).send(result);
+    }, (cause) => {
+        res.status(400).send({"err": cause})
     })
 });
 
@@ -29,21 +33,23 @@ router.get('/order/:id/myOrders', (req, res) => {
 router.get('/order/:id/myOrders/:orderid', (req, res) => {
     customerService.myOrdersById(req.params['id'],req.params['orderid'], (result) => {
         res.status(200).send(result);
+    }, (cause) => {
+        res.status(400).send({"err": cause});
     })
 });
 
 //Add new customer to database
 router.post('/addCustomer', (req, res) => {
     customerService.addCustomer(req.body,
-        (id) => {res.status(200).send(`New user added to database. ID: ${id}`)},
-        (cause) => {res.status(400).send(cause)})
+        (id) => {res.status(200).send({"resText":"New customer added to database", "resVal": id})},
+        (cause) => {res.status(409).send({"err:":cause})});
 });
 
 //Add new order to database
 router.post('/submitOrder', (req, res) =>{
     customerService.submitOrder(req.body,
-        (id) => {res.status(200).send(`New order added to database. Order ID: ${id}`)},
-        (cause) => {res.status(400).send(cause)})
+        (id) => {res.status(200).send({"resText":"New order added to database", "resVal": id})},
+        (cause) => {res.status(409).send({"err:":cause})})
 });
 
 module.exports = router;

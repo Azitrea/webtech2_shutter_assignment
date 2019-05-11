@@ -34,7 +34,10 @@ dispatcher.register((data) => {
         .then(result => {
             CustomerStorage._customers = result;
             CustomerStorage.emitChange();
-        });
+        }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+
 });
 
 dispatcher.register((data) => {
@@ -58,7 +61,7 @@ dispatcher.register((data) => {
         ReactDOM.render(
             React.createElement(CustomerOrders),
             document.getElementById('shutterContent')
-        );
+        )
     });
     CustomerStorage.emitChange();
 });
@@ -68,7 +71,7 @@ dispatcher.register((data) => {
         return;
     }
 
-    fetch('/customer/order/' + data.payload.payload.customerID + '/myOrders/'+ data.payload.payload.shutterID, {
+    fetch('/customer/order/' + data.payload.payload.customerID + '/myOrders/' + data.payload.payload.shutterID, {
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -83,7 +86,7 @@ dispatcher.register((data) => {
         ReactDOM.render(
             React.createElement(ShutterInfo),
             document.getElementById('shutterContent')
-        );
+        )
     });
     CustomerStorage.emitChange();
 });
@@ -93,46 +96,55 @@ dispatcher.register((data) => {
         return;
     }
 
-    fetch('customer/getOne/'+ data.payload.payload, {
+    fetch('customer/getOne/' + data.payload.payload, {
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
     }).then(response => {
         return response.json()
-    })
-        .then(result => {
-            CustomerStorage._oneCustomer = result;
-            CustomerStorage.emitChange();
-        }).then(() => {
-        ReactDOM.render(
-            React.createElement(SelectedCustomer),
-            document.getElementById('shutterContent')
-        );
+    }).then(result => {
+        CustomerStorage._oneCustomer = result;
         CustomerStorage.emitChange();
+    }).then(() => {
+        CustomerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
     });
     CustomerStorage.emitChange();
 });
 
-dispatcher.register((data)=>{
-    if(data.payload.actionType !== "addNewCustomer"){
+dispatcher.register((data) => {
+    if (data.payload.actionType !== "addNewCustomer") {
         return;
     }
-    console.log(data.payload.payload);
-    console.log(JSON.stringify(data.payload.payload));
 
-    fetch('/customer/addCustomer',{
-        method : 'POST',
-        headers : {
-            "Content-Type" : 'application/json'
+    fetch('/customer/addCustomer', {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
         },
-        body : JSON.stringify(data.payload.payload)
-    }).then((response) => {return response})
-        .then((result)=>{
-            console.log(result.text())
-        });
+        body: JSON.stringify(data.payload.payload)
+    }).then((response) => {
+        if (!response.ok) {
+            throw response.json();
+        }
+        else {
+            return response.json()
+        }
+    })
+        .then((data) => {
+            console.log(data);
+            CustomerStorage._selectedCustomer = data.resVal;
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(SelectedCustomer),
+            document.getElementById('shutterContent'))
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
 
-    //console.log(data.payload.payload);
+    CustomerStorage.emitChange()
 });
 
 

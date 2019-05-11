@@ -23,7 +23,7 @@ class CustomerActions{
         })
     }
 
-    getUserData(customerID){
+    getCustomerData(customerID){
         ShutterDispatcher.handleViewAction({
             actionType: "getCustomerData",
             payload: parseInt(customerID)
