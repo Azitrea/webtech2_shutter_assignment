@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomerList from "./CustomerList";
+import RegisterCustomer from './RegisterCustomer'
 import ReactDOM from "react-dom";
 
 class Customers extends React.Component {
@@ -21,7 +22,7 @@ class Customers extends React.Component {
                             <button onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
                         </div>
                         <div className="col-4 badge-info">
-                            <button onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
+                            <button onClick={() => {this.loadContent(RegisterCustomer)}}>Add new user</button>
                         </div>
                         <div className="col-2"> </div>
                     </div>

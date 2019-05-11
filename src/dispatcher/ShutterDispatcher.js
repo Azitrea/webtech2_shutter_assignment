@@ -114,4 +114,26 @@ dispatcher.register((data) => {
     CustomerStorage.emitChange();
 });
 
+dispatcher.register((data)=>{
+    if(data.payload.actionType !== "addNewCustomer"){
+        return;
+    }
+    console.log(data.payload.payload);
+    console.log(JSON.stringify(data.payload.payload));
+
+    fetch('/customer/addCustomer',{
+        method : 'POST',
+        headers : {
+            "Content-Type" : 'application/json'
+        },
+        body : JSON.stringify(data.payload.payload)
+    }).then((response) => {return response})
+        .then((result)=>{
+            console.log(result.text())
+        });
+
+    //console.log(data.payload.payload);
+});
+
+
 export default dispatcher;

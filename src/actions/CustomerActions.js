@@ -29,6 +29,13 @@ class CustomerActions{
             payload: parseInt(customerID)
         })
     }
+
+    addCustomer(data){
+        ShutterDispatcher.handleViewAction({
+            actionType: "addNewCustomer",
+            payload: data
+        })
+    }
 }
 
 export default new CustomerActions();
