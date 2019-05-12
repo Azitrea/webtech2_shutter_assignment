@@ -102,15 +102,15 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
             const generatedOrderID = getNextSequenceValueResult[0]['sequence_value'].toString();
 
             this.DAO.readAll('shutterType', (resultShutter) => {
-                this.DAO.readWithFilter("Misc", {'_id': "material"}, async (resultMisc) => {
+                this.DAO.readWithFilter("Misc", {'_id': "miscellaneous"}, async (resultMisc) => {
                     for (let i in orderedShutters) {
-                        const generatedShutterID = await this.DAO.getNextSequenceValue('orderedshutterid');
+                        const generatedShutterID = await this.DAO.getNextSequenceValue('orderid');
 
                         orderedShutters[i]["_id"] = generatedShutterID[0]['sequence_value'].toString();
                         orderedShutters[i]["orderID"] = generatedOrderID;
                         orderedShutters[i]["customerID"] = newOrder["customerID"];
                         orderedShutters[i]["status"] = "Available";
-                        orderedShutters[i]["price"] = this.calculatePrice(orderedShutters[i]['shutterType'], orderedShutters[i]['material'], resultMisc, resultShutter)
+                        orderedShutters[i]["price"] = this.calculatePrice(orderedShutters[i]['shutterType'], orderedShutters[i]['material'], resultMisc, resultShutter);
                     }
                     this.DAO.insertMany("orderedShutters", orderedShutters, () => {
                         if (success) {
@@ -143,7 +143,14 @@ CustomerService.prototype.calculatePrice = function (shutterType, material, mate
     let price = 0;
     for (let sT of shutterTypesFormDB){
         if (sT['_id'] === shutterType.toString()){
-            price = Number(sT['price']) + Number(materialsFromDB[0]['value'][material]);
+            price = Number(sT['price']);
+            break;
+        }
+
+    }
+    for (let mat of materialsFromDB){
+        if (mat[material] === material){
+            price += Number(mat['price']);
             break;
         }
     }

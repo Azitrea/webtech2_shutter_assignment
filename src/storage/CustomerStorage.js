@@ -7,6 +7,9 @@ class CustomerStorage extends EventEmitter{
     _orderList = [];
     _shutterInfo = [];
     _oneCustomer = [];
+    _shutterType = [];
+    _color = [];
+    _material = [];
 
 
     emitChange(){

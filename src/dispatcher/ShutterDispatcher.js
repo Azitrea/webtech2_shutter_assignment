@@ -19,6 +19,8 @@ class ShutterDispatcher extends Dispatcher {
 
 const dispatcher = new ShutterDispatcher();
 
+
+//List all customers
 dispatcher.register((data) => {
     if (data.payload.actionType !== 'listCustomers') {
         return;
@@ -40,6 +42,8 @@ dispatcher.register((data) => {
 
 });
 
+
+//List my order IDs
 dispatcher.register((data) => {
     if (data.payload.actionType !== 'listMyOrders') {
         return;
@@ -52,20 +56,30 @@ dispatcher.register((data) => {
         }
     }).then(response => {
         console.log({response});
-        return response.json();
+        if (!response.ok) {
+            throw response.json();
+        }
+        else {
+            return response.json()
+        }
     })
         .then(result => {
             CustomerStorage._orderList = result;
-            CustomerStorage.emitChange();
         }).then(() => {
         ReactDOM.render(
             React.createElement(CustomerOrders),
-            document.getElementById('shutterContent')
-        )
+            document.getElementById('customerContent')
+        );
+        CustomerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => {
+            console.log(errMsg)
+        });
     });
     CustomerStorage.emitChange();
 });
 
+//List shutters added to the order
 dispatcher.register((data) => {
     if (data.payload.actionType !== 'listMyShutter') {
         return;
@@ -77,20 +91,28 @@ dispatcher.register((data) => {
             "Accept": "application/json"
         }
     }).then(response => {
-        return response.json()
+        if (!response.ok) {
+            throw response.json();
+        }
+        else {
+            return response.json()
+        }
     })
         .then(result => {
             CustomerStorage._shutterInfo = result;
-            CustomerStorage.emitChange();
         }).then(() => {
         ReactDOM.render(
             React.createElement(ShutterInfo),
-            document.getElementById('shutterContent')
-        )
+            document.getElementById('customerContent')
+        );
+        CustomerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
     });
     CustomerStorage.emitChange();
 });
 
+//Get One customer
 dispatcher.register((data) => {
     if (data.payload.actionType !== 'getCustomerData') {
         return;
@@ -102,11 +124,14 @@ dispatcher.register((data) => {
             "Accept": "application/json"
         }
     }).then(response => {
-        return response.json()
+        if (!response.ok) {
+            throw response.json();
+        }
+        else {
+            return response.json()
+        }
     }).then(result => {
         CustomerStorage._oneCustomer = result;
-        CustomerStorage.emitChange();
-    }).then(() => {
         CustomerStorage.emitChange();
     }).catch((error) => {
         error.then(errMsg => console.log(errMsg));
@@ -114,6 +139,7 @@ dispatcher.register((data) => {
     CustomerStorage.emitChange();
 });
 
+//Add new customer
 dispatcher.register((data) => {
     if (data.payload.actionType !== "addNewCustomer") {
         return;
@@ -147,5 +173,77 @@ dispatcher.register((data) => {
     CustomerStorage.emitChange()
 });
 
+//Get shutter types
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'getShutterType') {
+        return;
+    }
+    fetch('/customer/list/shutterType', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        return response.json();
+    })
+        .then(result => {
+            CustomerStorage._shutterType = result;
+            CustomerStorage.emitChange();
+        })
+});
+
+//Get Color and material
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'getMiscData') {
+        return;
+    }
+    fetch('/customer/list/Misc', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        return response.json();
+    })
+        .then(result => {
+            result.map((data) => {
+                return (
+                    CustomerStorage._color = data.color,
+                        CustomerStorage._material = data.material
+                )
+            });
+            CustomerStorage.emitChange();
+        });
+
+});
+
+//Add new order
+dispatcher.register((data) => {
+    if (data.payload.actionType !== "submitOrder") {
+        return;
+    }
+
+    fetch('/customer/submitOrder', {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(data.payload.payload)
+    }).then((response) => {
+        if (!response.ok) {
+            throw response.json();
+        }
+        else {
+            return response.json()
+        }
+    })
+        .then((data) => {
+            console.log(data);
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+
+    CustomerStorage.emitChange()
+});
 
 export default dispatcher;

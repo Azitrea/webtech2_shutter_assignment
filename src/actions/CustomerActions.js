@@ -1,39 +1,60 @@
 import ShutterDispatcher from '../dispatcher/ShutterDispatcher'
 
-class CustomerActions{
+class CustomerActions {
 
-    listCustomers(){
+    listCustomers() {
         ShutterDispatcher.handleViewAction({
             actionType: "listCustomers",
-            payload : null
+            payload: null
         })
     }
 
-    listMyOrders(customerID){
+    listMyOrders(customerID) {
         ShutterDispatcher.handleViewAction({
             actionType: "listMyOrders",
             payload: parseInt(customerID)
         })
     }
 
-    listMyShutter(customerID, shutterID){
+    listMyShutter(customerID, shutterID) {
         ShutterDispatcher.handleViewAction({
             actionType: "listMyShutter",
             payload: {"customerID": customerID, "shutterID": shutterID}
         })
     }
 
-    getCustomerData(customerID){
+    getCustomerData(customerID) {
         ShutterDispatcher.handleViewAction({
             actionType: "getCustomerData",
             payload: parseInt(customerID)
         })
     }
 
-    addCustomer(data){
+    addCustomer(data) {
         ShutterDispatcher.handleViewAction({
             actionType: "addNewCustomer",
             payload: data
+        })
+    }
+
+    getShutterType() {
+        ShutterDispatcher.handleViewAction({
+            actionType: "getShutterType",
+            payload: null
+        })
+    }
+
+    getMiscData() {
+        ShutterDispatcher.handleViewAction({
+            actionType: "getMiscData",
+            payload: null
+        })
+    }
+
+    submitOrder(data){
+        ShutterDispatcher.handleViewAction({
+          actionType: "submitOrder",
+          payload: data
         })
     }
 }

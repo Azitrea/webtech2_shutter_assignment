@@ -36,6 +36,7 @@ class CustomerOrders extends React.Component {
                                     <span>Shutter Material: {item.material}</span><br/>
                                     <span>Comment: {item.comment}</span><br/>
                                     <span>Price: {item.price}</span><br/>
+                                    <span>{item.err}</span>
                                 </li>
                             ))}
                         </ul>

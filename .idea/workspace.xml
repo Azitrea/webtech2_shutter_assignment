@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bb0b267-e85c-4607-b68d-8cb10e7c4c0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/CustomerComponents/CreateOrder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/customer/customerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/customer/customerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/customer/customerService.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/customer/customerService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/CustomerActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/CustomerActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomerComponents/RegisterCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomerComponents/RegisterCustomer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/storage/CustomerStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/storage/CustomerStorage.js" afterDir="false" />
     </list>
@@ -25,24 +26,24 @@
     <session id="-1620234126">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="17" />
+          <entry key="js" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="17" />
+          <entry key="JavaScript" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1697" />
-          <entry key="txt" value="27" />
+          <entry key="js" value="4151" />
+          <entry key="txt" value="99" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1697" />
-          <entry key="PLAIN_TEXT" value="27" />
+          <entry key="JavaScript" value="4151" />
+          <entry key="PLAIN_TEXT" value="99" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -62,10 +63,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/customer/customerController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/Customers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="110" lean-forward="true" selection-start-line="24" selection-start-column="110" selection-end-line="24" selection-end-column="110" />
+            <state>
+              <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="58" column="58" lean-forward="true" selection-start-line="58" selection-start-column="58" selection-end-line="58" selection-end-column="58" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -74,10 +93,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CreateOrder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-41">
-              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            <state relative-caret-position="514">
+              <caret line="173" selection-start-line="173" selection-end-line="173" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/manager/managerService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="89" column="53" lean-forward="true" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actions/CustomerActions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="46" column="50" lean-forward="true" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -86,10 +135,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js">
+        <entry file="file://$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="3675">
+              <caret line="245" column="32" lean-forward="true" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -100,41 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/storage/CustomerStorage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/actions/CustomerActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="41" lean-forward="true" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="90" column="33" lean-forward="true" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+              <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -147,6 +175,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>onsole</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -172,17 +205,18 @@
         <option value="$PROJECT_DIR$/src/components/WorkerComponents/Worker.js" />
         <option value="$PROJECT_DIR$/src/components/ManagerComponents/Manager.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js" />
-        <option value="$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js" />
-        <option value="$PROJECT_DIR$/src/storage/CustomerStorage.js" />
         <option value="$PROJECT_DIR$/src/components/CustomerComponents/Customers.js" />
-        <option value="$PROJECT_DIR$/src/actions/CustomerActions.js" />
-        <option value="$PROJECT_DIR$/backend/customer/customerService.js" />
         <option value="$PROJECT_DIR$/backend/customer/customerController.js" />
-        <option value="$PROJECT_DIR$/src/components/CustomerComponents/RegisterCustomer.js" />
-        <option value="$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js" />
         <option value="$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomerComponents/RegisterCustomer.js" />
+        <option value="$PROJECT_DIR$/src/storage/CustomerStorage.js" />
         <option value="$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js" />
+        <option value="$PROJECT_DIR$/backend/customer/customerService.js" />
+        <option value="$PROJECT_DIR$/src/actions/CustomerActions.js" />
+        <option value="$PROJECT_DIR$/src/components/CustomerComponents/CreateOrder.js" />
+        <option value="$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js" />
       </list>
     </option>
   </component>
@@ -201,9 +235,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1759" />
-    <option name="height" value="1047" />
+    <option name="x" value="161" />
+    <option name="y" value="71" />
+    <option name="width" value="1657" />
+    <option name="height" value="991" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -229,6 +264,12 @@
               <item name="webtech2_shutter_assignment" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="customer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webtech2_shutter_assignment" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webtech2_shutter_assignment" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="manager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webtech2_shutter_assignment" type="b2602c69:ProjectViewProjectNode" />
@@ -275,7 +316,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Downloads/Wt2/WebTechnologies2/sakila-example" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
@@ -319,7 +360,7 @@
       <workItem from="1557309012143" duration="22110000" />
       <workItem from="1557413087355" duration="24802000" />
       <workItem from="1557485769602" duration="12134000" />
-      <workItem from="1557597443951" duration="12351000" />
+      <workItem from="1557597443951" duration="27828000" />
     </task>
     <task id="LOCAL-00001" summary="-basic request methods added to customer">
       <created>1556826101947</created>
@@ -384,11 +425,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557593200819</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Customer registration and selection finished, error handling updated">
+      <created>1557610499546</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557610499546</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204472000" />
+    <option name="totallyTimeSpent" value="219949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -402,7 +450,7 @@
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22966242" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22966242" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -417,7 +465,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32324323" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32324323" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -463,7 +511,8 @@
     <MESSAGE value="WorkerService finished&#10;Managerservice listings and creating invoices finished" />
     <MESSAGE value="Backend 90% done" />
     <MESSAGE value="RegisterUser added" />
-    <option name="LAST_COMMIT_MESSAGE" value="RegisterUser added" />
+    <MESSAGE value="Customer registration and selection finished, error handling updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Customer registration and selection finished, error handling updated" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -545,16 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/WorkerComponents/Worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -562,104 +601,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/manager/managerService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="9" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/DAO/DAO.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="859">
+        <state relative-caret-position="-150">
           <caret line="97" selection-start-line="97" selection-end-line="97" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/customer/customerController.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        <state relative-caret-position="210">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/RegisterCustomer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="100" column="57" selection-start-line="100" selection-start-column="57" selection-end-line="100" selection-end-column="57" />
+        <state relative-caret-position="105">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/customer/customerService.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/Customers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state>
+          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="90" column="33" lean-forward="true" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerOrders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        <state relative-caret-position="465">
+          <caret line="58" column="58" lean-forward="true" selection-start-line="58" selection-start-column="58" selection-end-line="58" selection-end-column="58" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/manager/managerService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="89" column="53" lean-forward="true" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/customer/customerService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="153" column="18" lean-forward="true" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/customer/customerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CustomerList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
+        <state relative-caret-position="300">
+          <caret line="46" column="50" lean-forward="true" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/CreateOrder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/CustomerActions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="41" lean-forward="true" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+        <state relative-caret-position="855">
+          <caret line="57" column="10" lean-forward="true" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/CustomerStorage.js">
+    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/ShutterInfo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/Customers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="110" lean-forward="true" selection-start-line="24" selection-start-column="110" selection-end-line="24" selection-end-column="110" />
+        <state relative-caret-position="349">
+          <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/CustomerComponents/SelectedCustomer.js">
+    <entry file="file://$PROJECT_DIR$/src/storage/CustomerStorage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        <state relative-caret-position="345">
+          <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dispatcher/ShutterDispatcher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3675">
+          <caret line="245" column="32" lean-forward="true" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

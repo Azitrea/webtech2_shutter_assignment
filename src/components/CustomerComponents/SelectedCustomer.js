@@ -1,6 +1,8 @@
 import React from 'react';
 import CustomerStorage from '../../storage/CustomerStorage';
 import CustomerActions from '../../actions/CustomerActions';
+import ReactDOM from "react-dom";
+import CreateOrder from "./CreateOrder";
 
 
 class CustomerList extends React.Component {
@@ -31,7 +33,7 @@ class CustomerList extends React.Component {
                 <div className="col-5">
                     <div>
                         <div>
-                            Customer Data: <br/>
+                            <div className="text-center h1">Customer Data<br/></div>
                             {this.state.customer.map((customer) => {
                                 return (
                                     <span key={customer._id}>
@@ -44,11 +46,21 @@ class CustomerList extends React.Component {
                                 )
                             })}
                         </div>
-                        <div>Button1</div>
-                        <div>Button2</div>
+                        <div className="pt-2 text-center">
+                            <button className="btn btn-success w-25" onClick={() => {
+                                CustomerActions.listMyOrders(CustomerStorage._selectedCustomer);
+                            }}>List Orders</button>
+                        </div>
+                        <div className="pt-2 text-center">
+                            <button className="btn btn-info w-25" onClick={() => {
+                                ReactDOM.render(
+                                    React.createElement(CreateOrder),
+                                    document.getElementById('customerContent')
+                                );}}>Create Order</button>
+                        </div>
                     </div>
                 </div>
-                <div className="col-5 badge-dark" id="customerContent">
+                <div className="col-5" id="customerContent">
 
                 </div>
                 <div className="col-1"></div>

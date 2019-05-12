@@ -7,11 +7,11 @@ class CustomerOrders extends React.Component {
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
-        this.state = {selectedUser: null, orderList: []}
+        this.state = {selectedCustomer: null, orderList: []}
     }
 
     _onChange() {
-        this.setState({selectedUser: CustomerStorage._selectedCustomer, orderList: CustomerStorage._orderList});
+        this.setState({selectedCustomer: CustomerStorage._selectedCustomer, orderList: CustomerStorage._orderList});
     }
 
     componentDidMount() {
@@ -25,16 +25,15 @@ class CustomerOrders extends React.Component {
     render() {
         return (
             <div className="card">
-                <div className="card-header">Customers</div>
+                <div className="card-header text-black">Orders</div>
                 <div className="card-body">
                     {
-                        this.state.orderList !== undefined &&
+                        this.state.orderList !== undefined && this.state.orderList !== null &&
                         <div>
-                            {this.state.selectedUser}
                             <ul className="list-group">
                                 {this.state.orderList.map((item) => (
                                     <li className="list-group-item" key={item} onClick={() => {
-                                        CustomerActions.listMyShutter(this.state.selectedUser, item)
+                                        CustomerActions.listMyShutter(this.state.selectedCustomer, item)
                                     }}>{item}</li>
                                 ))}
                             </ul>
