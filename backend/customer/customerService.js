@@ -148,8 +148,8 @@ CustomerService.prototype.calculatePrice = function (shutterType, material, mate
         }
 
     }
-    for (let mat of materialsFromDB){
-        if (mat[material] === material){
+    for (let mat of materialsFromDB[0]['material']){
+        if (mat['_id'] === material){
             price += Number(mat['price']);
             break;
         }

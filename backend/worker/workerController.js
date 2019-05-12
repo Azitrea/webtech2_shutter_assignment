@@ -13,6 +13,11 @@ router.get('/listOrderIDs', (req, res) => {
 
 //List all shutters in the order
 router.get('/listOrderIDs/:id', (req, res) => {
+    if (req.params['id'] === undefined || req.params['id'] === null || req.params['id'] === ''){
+        res.status(414).send({'err':'Order ID is not defined'});
+        return;
+    }
+
     workerService.listShutters(req.params['id'],(result) => {
         res.status(200).send(result);
     });
@@ -20,9 +25,19 @@ router.get('/listOrderIDs/:id', (req, res) => {
 
 //SetJobStatus
 router.post('/select', (req, res) => {
-    if (req.body === undefined || req.body === ''){
-        res.send('request is empty');
+    if (req.body === undefined || req.body === null || req.body === ''){
+        res.status(414).send({'err': 'Set status data is empty'});
+        return;
     }
+    if (req.body['id'] === undefined || req.body['id'] === null || req.body['id'] === ''){
+        res.status(414).send({'err': 'Shutter ID is not defined'});
+        return;
+    }
+    if (req.body['status'] === undefined || req.body['status'] === null || req.body['status'] === ''){
+        res.status(414).send({'err': 'Assembling status is not defined'});
+        return;
+    }
+
     workerService.setJobStatus(req.body, (result) => {
         res.status(200).send(result);
     }, (error) => {
@@ -32,6 +47,11 @@ router.post('/select', (req, res) => {
 
 //List all parts required for the shutter
 router.get('/parts/:id', (req, res) => {
+    if (req.params['id'] === undefined || req.params['id'] === null || req.params['id'] === ''){
+        res.status(414).send({'err':'Shutter ID is not defined'});
+        return;
+    }
+
     workerService.getShutterInfo(req.params['id'], (result) => {
         res.status(200).send(result);
     }, (error) => {
