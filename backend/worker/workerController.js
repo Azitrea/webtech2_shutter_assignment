@@ -13,7 +13,7 @@ router.get('/listOrderIDs', (req, res) => {
 
 //List all shutters in the order
 router.get('/listOrderIDs/:id', (req, res) => {
-    if (req.params['id'] === undefined || req.params['id'] === null || req.params['id'] === ''){
+    if (req.params['id'] === undefined || req.params['id'] === "null" || req.params['id'] === ''){
         res.status(414).send({'err':'Order ID is not defined'});
         return;
     }
@@ -38,10 +38,11 @@ router.post('/select', (req, res) => {
         return;
     }
 
+
     workerService.setJobStatus(req.body, (result) => {
-        res.status(200).send(result);
+        res.status(200).send({"response":result});
     }, (error) => {
-        res.status(400).send(error);
+        res.status(400).send({"err:":error});
     });
 });
 
@@ -55,7 +56,7 @@ router.get('/parts/:id', (req, res) => {
     workerService.getShutterInfo(req.params['id'], (result) => {
         res.status(200).send(result);
     }, (error) => {
-        res.status(400).send(error);
+        res.status(400).send({"err:":error});
     });
 });
 

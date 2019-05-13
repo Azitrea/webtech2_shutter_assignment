@@ -23,6 +23,13 @@ class CustomerActions {
         })
     }
 
+    renderSelectedCustomer(customerID){
+        ShutterDispatcher.handleViewAction({
+            actionType: "renderSelectedCustomer",
+            payload: customerID
+            })
+    }
+
     getCustomerData(customerID) {
         ShutterDispatcher.handleViewAction({
             actionType: "getCustomerData",
@@ -55,6 +62,13 @@ class CustomerActions {
         ShutterDispatcher.handleViewAction({
           actionType: "submitOrder",
           payload: data
+        })
+    }
+
+    createOrderComponent(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "createOrderComponent",
+            payload: null
         })
     }
 }

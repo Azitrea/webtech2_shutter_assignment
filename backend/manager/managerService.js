@@ -13,7 +13,7 @@ ManagerService.prototype.listAll = function (coll, callback) {
     })
 };
 
-
+//Order IDs ready to ship
 ManagerService.prototype.listReady = function (callback) {
     this.DAO.readAll('customerData', (result) => {
         if (result.length !== 0) {
@@ -35,6 +35,7 @@ ManagerService.prototype.listReady = function (callback) {
     })
 };
 
+//Get customer by order ID
 ManagerService.prototype.getCustomerDataByOrderID = function(ordID, callback){
     this.DAO.readAll('customerData', (result) => {
         if (result.length !== 0) {
@@ -54,6 +55,7 @@ ManagerService.prototype.getCustomerDataByOrderID = function(ordID, callback){
     })
 };
 
+//Creat invoice from customer data
 ManagerService.prototype.createInnvoince = function (body, callback) {
     const ordID = body['id'];
     const InstallationDate = body['InstallationDate'];

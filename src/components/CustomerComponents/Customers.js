@@ -17,14 +17,16 @@ class Customers extends React.Component {
             <div className="App container">
                 <div id="CustomerContent">
                     <div className="row">
-                        <div className="col-2"> </div>
-                        <div className="col-4 bg-danger">
-                            <button onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
+                        <div className="col-4"> </div>
+                        <div className="p-5 col-4">
+                            <div className="p-3 bg-danger">
+                                <button className="w-50" onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
+                            </div>
+                            <div className="p-3 badge-info">
+                                <button className="w-50" onClick={() => {this.loadContent(RegisterCustomer)}}>Add new user</button>
+                            </div>
                         </div>
-                        <div className="col-4 badge-info">
-                            <button onClick={() => {this.loadContent(RegisterCustomer)}}>Add new user</button>
-                        </div>
-                        <div className="col-2"> </div>
+                        <div className="col-4"> </div>
                     </div>
                 </div>
             </div>

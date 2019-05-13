@@ -6,8 +6,6 @@ class CreateOrder extends React.Component {
 
     constructor(props) {
         super(props);
-        CustomerActions.getShutterType();
-        CustomerActions.getMiscData();
         this._onChange = this._onChange.bind(this);
         this.state = {
             shutterType: CustomerStorage._shutterType,

@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomerStorage from '../../storage/CustomerStorage'
 
-class CustomerOrders extends React.Component {
+class ShutterInfo extends React.Component {
 
     constructor(props) {
         super(props);
@@ -33,10 +33,10 @@ class CustomerOrders extends React.Component {
                                     <span>ID: {item._id}</span><br/>
                                     <span>Window Size: {item.Window}</span><br/>
                                     <span>Shutter Type: {item.shutterType}</span><br/>
+                                    <span>Shutter Color: {item.color}</span><br/>
                                     <span>Shutter Material: {item.material}</span><br/>
                                     <span>Comment: {item.comment}</span><br/>
                                     <span>Price: {item.price}</span><br/>
-                                    <span>{item.err}</span>
                                 </li>
                             ))}
                         </ul>
@@ -47,4 +47,4 @@ class CustomerOrders extends React.Component {
     }
 }
 
-export default CustomerOrders;
+export default ShutterInfo;

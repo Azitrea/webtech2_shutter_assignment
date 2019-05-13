@@ -104,7 +104,7 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
             this.DAO.readAll('shutterType', (resultShutter) => {
                 this.DAO.readWithFilter("Misc", {'_id': "miscellaneous"}, async (resultMisc) => {
                     for (let i in orderedShutters) {
-                        const generatedShutterID = await this.DAO.getNextSequenceValue('orderid');
+                        const generatedShutterID = await this.DAO.getNextSequenceValue('orderedshutterid');
 
                         orderedShutters[i]["_id"] = generatedShutterID[0]['sequence_value'].toString();
                         orderedShutters[i]["orderID"] = generatedOrderID;

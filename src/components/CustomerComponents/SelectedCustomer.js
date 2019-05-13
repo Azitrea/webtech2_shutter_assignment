@@ -1,15 +1,14 @@
 import React from 'react';
 import CustomerStorage from '../../storage/CustomerStorage';
 import CustomerActions from '../../actions/CustomerActions';
-import ReactDOM from "react-dom";
-import CreateOrder from "./CreateOrder";
-
 
 class CustomerList extends React.Component {
 
     constructor(props) {
         super(props);
         CustomerActions.getCustomerData(CustomerStorage._selectedCustomer);
+        CustomerActions.getShutterType();
+        CustomerActions.getMiscData();
         this._onChange = this._onChange.bind(this);
         this.state = {customer: []}
     }
@@ -53,10 +52,7 @@ class CustomerList extends React.Component {
                         </div>
                         <div className="pt-2 text-center">
                             <button className="btn btn-info w-25" onClick={() => {
-                                ReactDOM.render(
-                                    React.createElement(CreateOrder),
-                                    document.getElementById('customerContent')
-                                );}}>Create Order</button>
+                                CustomerActions.createOrderComponent()}}>Create Order</button>
                         </div>
                     </div>
                 </div>
