@@ -32,9 +32,9 @@ class CustomerOrders extends React.Component {
                         <div>
                             <ul className="list-group">
                                 {this.state.orderList.map((item) => (
-                                    <li className="list-group-item" key={item} onClick={() => {
-                                        CustomerActions.listMyShutter(this.state.selectedCustomer, item)
-                                    }}>{item}</li>
+                                    <li className="list-group-item" key={item.OrderID} onClick={() => {
+                                        CustomerActions.listMyShutter(this.state.selectedCustomer, item.OrderID)
+                                    }}>{item.OrderID} | {item.status}</li>
                                 ))}
                             </ul>
                         </div>

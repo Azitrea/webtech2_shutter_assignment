@@ -12,6 +12,11 @@ import CreateOrder from "../components/CustomerComponents/CreateOrder";
 import ShutterParts from "../components/WorkerComponents/ShutterParts";
 import ManagerStorage from "../storage/ManagerStorage";
 import MCustomerList from "../components/ManagerComponents/MCustomerList";
+import ReadyToShip from "../components/ManagerComponents/ReadyToShip";
+import CustomerData from "../components/ManagerComponents/CustomerData";
+import CreateInvoice from "../components/ManagerComponents/CreateInvoice";
+import AllOrders from "../components/ManagerComponents/AllOrders";
+import ShowInvoice from "../components/ManagerComponents/ShowInvoice";
 
 class ShutterDispatcher extends Dispatcher {
 
@@ -476,13 +481,83 @@ dispatcher.register((data) => {
         return response.json();
     })
         .then(result => {
+            console.log(result)
             ManagerStorage._ordersReadyToShip = result;
             ManagerStorage.emitChange();
-        }).catch((error) => {
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(ReadyToShip),
+            document.getElementById('manager'));
+        ManagerStorage.emitChange();
+    }).catch((error) => {
         error.then(errMsg => console.log(errMsg));
     });
 
 });
+
+//List all orders
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'listAllOrdersForManager') {
+        return;
+    }
+    fetch('/manager/listAllOrders', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        return response.json();
+    })
+        .then(result => {
+            ManagerStorage._allOrders = result;
+            ManagerStorage.emitChange();
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(AllOrders),
+            document.getElementById('manager'));
+        ManagerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+
+});
+
+
+//List customer by order ID
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'listCustomerByOrderID') {
+        return;
+    }
+    const id = data.payload.payload.OrderID;
+    console.log(id);
+    fetch('/manager/customerByOrderId/'+ id, {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        if (!response.ok) {
+            throw response.json();
+        } else {
+            return response.json();
+        }
+    })
+        .then(result => {
+            ManagerStorage._selectedOrder = data.payload.payload;
+            console.log(result)
+            ManagerStorage._oneCustomer = result;
+            ManagerStorage.emitChange();
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(CustomerData),
+            document.getElementById('customerData'));
+        ManagerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+
+});
+
 
 //create Invoice
 dispatcher.register((data) => {
@@ -495,23 +570,22 @@ dispatcher.register((data) => {
         headers: {
             "Content-Type": 'application/json'
         },
-        body: JSON.stringify({
-            "id": data.payload.payload,
-            "status": "Assembling finished"
-        })
+        body: JSON.stringify(data.payload.payload)
     }).then((response) => {
         if (!response.ok) {
             throw response.json();
         } else {
-            return response.json()
+            return response.json();
         }
     }).then((data) => {
-        WorkerStorage._selectedShutter = null;
         console.log(data);
+        ManagerStorage._invoices = data;
+        ManagerStorage.emitChange();
     }).then(() => {
-            ReactDOM.render(<div></div>,
-                document.getElementById('orderedShutterList'));
-            WorkerStorage.emitChange();
+        ReactDOM.render(
+            <div>Invoice Created</div>,
+            document.getElementById('manager'));
+        ManagerStorage.emitChange();
         }
     ).catch((error) => {
         error.then(errMsg => console.log(errMsg));
@@ -519,5 +593,54 @@ dispatcher.register((data) => {
     WorkerStorage.emitChange()
 });
 
+//Get invoice
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'getInvoice') {
+        return;
+    }
+
+    const id = data.payload.payload;
+    console.log(id);
+    fetch('/manager/getInvoice/'+ id, {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        if (!response.ok) {
+            throw response.json();
+        } else {
+            return response.json();
+        }
+    })
+        .then(result => {
+
+            ManagerStorage._invoiceOrders = result[0]['shutters'];
+            ManagerStorage._invoices = result;
+            ManagerStorage.emitChange();
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(ShowInvoice),
+            document.getElementById('manager'));
+        ManagerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+    ManagerStorage.emitChange();
+
+});
+
+dispatcher.register((data) => {
+    if (data.payload.actionType !== "renderInvoicePanel") {
+        return;
+    }
+
+    ReactDOM.render(
+        React.createElement(CreateInvoice),
+        document.getElementById('manager')
+    );
+
+    CustomerStorage.emitChange();
+});
 
 export default dispatcher;

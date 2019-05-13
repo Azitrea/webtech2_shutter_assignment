@@ -32,7 +32,12 @@ class Manager extends React.Component {
                    </div>
                     <div>
                         <button className="w-100" onClick={()=> {
-                           // ManagerAction.listReadyToShip();
+                           ManagerAction.listAllOrders();
+                        }}>All orders</button>
+                    </div>
+                    <div>
+                        <button className="w-100" onClick={()=> {
+                            ManagerAction.listReadyToShip();
                         }}>Orders Ready To Ship</button>
                     </div>
                 </div>

@@ -2,16 +2,16 @@ import React from 'react';
 import ManagerStorage from "../../storage/ManagerStorage";
 import ManagerAction from "../../actions/ManagerAction";
 
-class ReadyToShip extends React.Component {
+class AllOrders extends React.Component {
 
     constructor(props) {
         super(props);
         this._onChange = this._onChange.bind(this);
-        this.state = {readyToShip: []}
+        this.state = {allOrders: []}
     }
 
     _onChange() {
-        this.setState({readyToShip: ManagerStorage._ordersReadyToShip});
+        this.setState({allOrders: ManagerStorage._allOrders});
     }
 
     componentDidMount() {
@@ -26,11 +26,11 @@ class ReadyToShip extends React.Component {
         return (
             <div className="row">
                 <div className="col-3">
-                    <div className="card-header">Orders ready to ship</div>
+                    <div className="card-header">All orders</div>
                     <div className="card-body">
                         <ul className="list-group">
                             {
-                                this.state.readyToShip.map((ready) => {
+                                this.state.allOrders.map((ready) => {
                                     return (
                                         <li key={ready.OrderID} onClick={()=> {
                                             ManagerAction.listCustomerByOrderID(ready);
@@ -47,4 +47,4 @@ class ReadyToShip extends React.Component {
     }
 }
 
-export default ReadyToShip;
+export default AllOrders;

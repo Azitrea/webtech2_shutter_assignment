@@ -4,7 +4,11 @@ class ManagerStorage extends EventEmitter{
 
     _invoices = [];
     _customers = [];
+    _oneCustomer = [];
     _ordersReadyToShip =[];
+    _allOrders = [];
+    _selectedOrder = null;
+    _invoiceOrders = [];
 
 
 

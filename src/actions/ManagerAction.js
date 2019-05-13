@@ -8,6 +8,13 @@ class ManagerAction {
         })
     }
 
+    listCustomerByOrderID(data){
+        ShutterDispatcher.handleViewAction({
+            actionType: "listCustomerByOrderID",
+            payload: data
+        })
+    }
+
     listReadyToShip(){
         ShutterDispatcher.handleViewAction({
             actionType: "readyToShip",
@@ -19,6 +26,26 @@ class ManagerAction {
         ShutterDispatcher.handleViewAction({
             actionType: "createInvoice",
             payload: data
+        })
+    }
+
+    listAllOrders(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "listAllOrdersForManager",
+            payload: null
+        })
+    }
+
+    getInvoice(OrderID){
+        ShutterDispatcher.handleViewAction({
+            actionType: "getInvoice",
+            payload: OrderID
+        })
+    }
+
+    renderInvoicePanel(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "renderInvoicePanel"
         })
     }
 }

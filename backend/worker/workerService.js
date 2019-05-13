@@ -68,14 +68,12 @@ WorkerService.prototype.setJobStatus = function(req, success, error){
 //Updates the order status when all the shutters are set to Assembling finished
 WorkerService.prototype.updateOrderStatus = function (orderID, callback){
    this.listShutters(orderID, (result) => {
-       console.log(orderID);
        let finished = true;
        for(let order of result){
            if(order['status'] !== 'Assembling finished'){
                finished = false;
            }
        }
-       console.log(finished);
        if (finished) {
            let select = {'_id': result[0]['customerID'], "orderIDs.OrderID" : orderID};
            let data = {$set: { "orderIDs.$.status" : 'Ready to Ship'}};
@@ -87,9 +85,9 @@ WorkerService.prototype.updateOrderStatus = function (orderID, callback){
            callback()
        }
    })
-}
+};
 
-//List all martials required for the Shutter
+//List all materials required for the Shutter
 WorkerService.prototype.getShutterInfo = function(id, success, error) {
     this.DAO.readWithFilter("orderedShutters", {'_id': id}, (result) => {
         if(result.length !== 0){

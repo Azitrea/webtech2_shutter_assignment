@@ -33,7 +33,7 @@ CustomerService.prototype.myOrders = function (id, success, error) {
                 var orderIDs = requests[0]['orderIDs'];
                 var orderFilterString = [];
                 for (let ids of orderIDs) {
-                    orderFilterString.push(ids['OrderID']);
+                    orderFilterString.push(ids);
                 }
                 success(orderFilterString);
 

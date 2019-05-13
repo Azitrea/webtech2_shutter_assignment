@@ -37,6 +37,7 @@ class ShutterInfo extends React.Component {
                                     <span>Shutter Material: {item.material}</span><br/>
                                     <span>Comment: {item.comment}</span><br/>
                                     <span>Price: {item.price}</span><br/>
+                                    <span>Status: {item.status}</span>
                                 </li>
                             ))}
                         </ul>
