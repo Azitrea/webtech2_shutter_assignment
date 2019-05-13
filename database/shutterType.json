@@ -1,0 +1,5 @@
+{"_id":"1","shutterName":"Lovely Louvered","shutterType":"Exterior","price":"220","shutterParts":[{"Hinges":"6","DividerRails":"200","LowerRail":"2","UpperRail":"2","Boards":"4","Wooden_sheet":"0"}]}
+{"_id":"2","shutterName":"Raised Panel","shutterType":"Exterior","price":"115","shutterParts":[{"Hinges":"4","DividerRails":"0","LowerRail":"2","UpperRail":"2","Boards":"4","Wooden_sheet":"4"}]}
+{"_id":"3","shutterName":"Board and Batten","shutterType":"Exterior","price":"55","shutterParts":[{"Hinges":"4","DividerRails":"0","LowerRail":"0","UpperRail":"0","Boards":"12","Wooden_sheet":"0"}]}
+{"_id":"4","shutterName":"Shaker Style","shutterType":"Interior","price":"400","shutterParts":[{"Hinges":"4","DividerRails":"0","LowerRail":"2","UpperRail":"2","Boards":"18","Wooden_sheet":"6"}]}
+{"_id":"5","shutterName":"Cafe Style","shutterType":"Interior","price":"150","shutterParts":[{"Hinges":"4","DividerRails":"200","LowerRail":"2","UpperRail":"2","Boards":"0","Wooden_sheet":"0"}]}

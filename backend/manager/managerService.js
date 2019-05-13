@@ -1,3 +1,15 @@
+var winston = require('winston')
+var logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'manager-service' },
+    transports: [
+        new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'combined.log' })
+    ]
+});
+
+
 function ManagerService(DAO) {
 
     if (DAO !== undefined && DAO !== null) {
@@ -147,6 +159,7 @@ ManagerService.prototype.createInvoince = function (body, success, error) {
                             invoice['signature'] = signature;
                             this.DAO.insertOne('createdInvoices', invoice, (result) => {
                                 this.setOrderStatus(ordID, (result) => {
+                                    logger.info(`Invoice created: ${invoice['_id']}`);
                                     success(invoice);
                                 });
 
@@ -154,10 +167,12 @@ ManagerService.prototype.createInvoince = function (body, success, error) {
                         })
                     })
                 } else {
+                    logger.error(`Order is not ready for shipping: ${ordID}`);
                     error("Order is not ready for shipping")
                 }
             })
         } else {
+            logger.error(`Invoice for this order already exists ${ordID}`);
             error("Invoice for this order already exists");
         }
     });

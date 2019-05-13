@@ -1,3 +1,15 @@
+var winston = require('winston')
+var logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'worker-service' },
+    transports: [
+        new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'combined.log' })
+    ]
+});
+
+
 function WorkerService(DAO){
 
     if(DAO !== undefined && DAO !== null){
@@ -17,6 +29,7 @@ WorkerService.prototype.listOrderIDs = function(callback){
                   for (let ids of customer['orderIDs']){
                       if (ids['status'] === "Order Accepted"){
                           activeOrders.push(ids['OrderID']);
+
                       }
                   }
               }
@@ -54,11 +67,13 @@ WorkerService.prototype.setJobStatus = function(req, success, error){
 
                 this.DAO.updateOne("orderedShutters", select, data, () => {
                     this.updateOrderStatus(result[0]['orderID'], (res) => {
+                        logger.info(`Order: ${id}  Status: ${status}`);
                         success(`Order: ${id}  Status: ${status}`);
                     });
 
                 })
             } else {
+                logger.error(`Order: ${id} is not existing`);
                 error("Order is not existing");
             }
         })
@@ -79,7 +94,8 @@ WorkerService.prototype.updateOrderStatus = function (orderID, callback){
            let data = {$set: { "orderIDs.$.status" : 'Ready to Ship'}};
 
            this.DAO.updateOne("customerData", select, data, (result) => {
-                callback()
+               logger.info(`Order ${orderID} updated status: Assembling finished`);
+               callback()
            })
        }else {
            callback()

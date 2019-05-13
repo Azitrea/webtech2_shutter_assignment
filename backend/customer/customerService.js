@@ -1,3 +1,14 @@
+var winston = require('winston')
+var logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'customer-service' },
+    transports: [
+        new winston.transports.File({ filename: 'error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'combined.log' })
+    ]
+});
+
 function CustomerService(DAO) {
 
     if (DAO !== undefined && DAO !== null) {
@@ -82,10 +93,12 @@ CustomerService.prototype.addCustomer = function (customerData, success, error) 
             customerData['orderIDs'] = [];
 
             this.DAO.insertOne("customerData", customerData, () => {
+                logger.info(`New customer added to database ${customerData['_id']}`);
                 success(customerData['_id']);
             })
 
         } else {
+            logger.error(`User whit this e-mail already exists customerData['email']`);
             error('User whit this e-mail already exists');
         }
     })
@@ -126,6 +139,7 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
                             };
 
                             this.DAO.updateOne("customerData", select, data, () => {
+                                logger.info(`New order added to database: ${generatedOrderID}`);
                                 success(generatedOrderID);
                             })
                         }
@@ -134,6 +148,7 @@ CustomerService.prototype.submitOrder = function (newOrder, success, error) {
             })
 
         } else {
+            logger.error(`User is not Valid ${newOrder['customerID']}`);
             error('User is not valid');
         }
     })

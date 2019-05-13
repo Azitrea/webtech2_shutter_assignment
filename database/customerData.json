@@ -1,0 +1,3 @@
+{"_id":"38","name":"Kis Jani","email":"example1@gmail.com","address":"Miskolc, Egyetemváros E/3","phone":"0612345678","orderIDs":[{"OrderID":"1100","status":"Order Accepted"}]}
+{"_id":"39","name":"Nagy Máté","email":"example2@gmail.com","address":"Miskolc, Egyetemváros E/3","phone":"06213124124","orderIDs":[]}
+{"_id":"40","name":"Eros Tamás","email":"example3@gmail.com","address":"Budapest, Ezer utca 5","phone":"06123151223","orderIDs":[{"OrderID":"1099","status":"Order Accepted"}]}
