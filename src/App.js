@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+import './App.css';
 import Customers from './components/CustomerComponents/Customers';
 import Worker from './components/WorkerComponents/Worker'
 import Manager from './components/ManagerComponents/Manager'
@@ -13,7 +13,6 @@ function App() {
             document.getElementById('shutterContent')
         );
     }
-
 
     return (
         <>

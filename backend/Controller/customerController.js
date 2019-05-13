@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('./customerService');
+var Srs = require('../Service/customerService');
 const customerService = new Srs();
 
 //List everything from database by given databaseName

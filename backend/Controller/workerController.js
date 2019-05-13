@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('./workerService');
+var Srs = require('../Service/workerService');
 const workerService = new Srs();
 
 //List orders available for assembling

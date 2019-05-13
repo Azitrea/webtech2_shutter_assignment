@@ -47,12 +47,12 @@ class CustomerData extends React.Component {
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <button hidden={ManagerStorage._selectedOrder.status === "Invoice Created" ||  ManagerStorage._selectedOrder.status === "Order Accepted"} onClick={() => {
+                                            <button className="btn btn-outline-success" hidden={ManagerStorage._selectedOrder.status === "Invoice Created" ||  ManagerStorage._selectedOrder.status === "Order Accepted"} onClick={() => {
                                                 ManagerAction.renderInvoicePanel();
                                             }}
                                             >CreateInvoice
                                             </button>
-                                            <button hidden={ManagerStorage._selectedOrder.status === "Ready to Ship" || ManagerStorage._selectedOrder.status === "Order Accepted"} onClick={() => {
+                                            <button className="btn btn-outline-success" hidden={ManagerStorage._selectedOrder.status === "Ready to Ship" || ManagerStorage._selectedOrder.status === "Order Accepted"} onClick={() => {
                                                 ManagerAction.getInvoice(ManagerStorage._selectedOrder.OrderID);
                                             }}
                                             >Show Invoice

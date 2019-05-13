@@ -33,6 +33,7 @@ class ShutterParts extends React.Component {
                     {this.state.shutterParts !== undefined && this.state.shutterParts !== null &&
                     <>
                         <div>
+                            <span className="h1">Shutter Information</span><br/>
                             <span>Name: {this.state.shutterInfo.shutterName}</span><br/>
                             <span>Type: {this.state.shutterInfo.shutterType}</span><br/>
                             <span>Window Size: {this.state.shutterInfo.Window}</span><br/>
@@ -41,7 +42,7 @@ class ShutterParts extends React.Component {
                             <span>Comment: {this.state.shutterInfo.comment}</span><br/>
                         </div>
                         <div>
-                            <span>Parts required for assembling</span><br/>
+                            <span className="h1">Parts required for assembling</span><br/>
                             <span>Hinges: {this.state.shutterParts.Hinges}</span><br/>
                             <span>Divider rails: {this.state.shutterParts.DividerRails}</span><br/>
                             <span>Lower rails: {this.state.shutterParts.LowerRail}</span><br/>
@@ -51,7 +52,7 @@ class ShutterParts extends React.Component {
 
                         </div>
                         <div>
-                            <button onClick={() => {
+                            <button className="btn btn-outline-success" onClick={() => {
                                 WorkerActions.setStatusToFinished(WorkerStorage._selectedShutter);
                             }
                             }>Assembling Finished

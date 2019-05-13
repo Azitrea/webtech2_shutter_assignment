@@ -43,7 +43,7 @@ class Shutters extends React.Component {
                                         <span>Price: {item.price}</span><br/>
                                     </td>
                                     <td>
-                                        <button onClick={()=>{
+                                        <button className="btn btn-outline-success float-right" onClick={()=>{
                                             WorkerActions.setStatusToUnderConst(item._id);
                                         }}>Select</button>
                                     </td>

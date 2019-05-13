@@ -19,11 +19,11 @@ class Customers extends React.Component {
                     <div className="row">
                         <div className="col-4"> </div>
                         <div className="p-5 col-4">
-                            <div className="p-3 bg-danger">
-                                <button className="w-50" onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
+                            <div className="p-3">
+                                <button className="w-50 btn btn-outline-info" onClick={() => {this.loadContent(CustomerList)}}>List All Users</button>
                             </div>
-                            <div className="p-3 badge-info">
-                                <button className="w-50" onClick={() => {this.loadContent(RegisterCustomer)}}>Add new user</button>
+                            <div className="p-3">
+                                <button className="w-50 btn btn-outline-success" onClick={() => {this.loadContent(RegisterCustomer)}}>Add new user</button>
                             </div>
                         </div>
                         <div className="col-4"> </div>

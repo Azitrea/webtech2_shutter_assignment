@@ -24,6 +24,8 @@ class Worker extends React.Component {
 
     render() {
         return (
+            <>
+            <div>Shutters ready for Assembling</div>
             <div className="row">
                 <div className="col-6">
                     <table>
@@ -33,7 +35,7 @@ class Worker extends React.Component {
                                 <tr key={orderID}>
                                     <td>{orderID}</td>
                                     <td>
-                                        <button onClick={() => {
+                                        <button className="btn btn-outline-info" onClick={() => {
                                             WorkerActions.listOrderedShutters(orderID);
                                         }}>List Shutters
                                         </button>
@@ -49,6 +51,7 @@ class Worker extends React.Component {
                     <div id="orderedShutterList"></div>
                 </div>
             </div>
+            </>
         )
     }
 }

@@ -26,17 +26,17 @@ class Manager extends React.Component {
             <div className="row">
                 <div className="col-3">
                    <div>
-                       <button className="w-100" onClick={()=> {
+                       <button className="w-100 btn btn-outline-success" onClick={()=> {
                            ManagerAction.listCustomers();
                        }}>List customers</button>
                    </div>
                     <div>
-                        <button className="w-100" onClick={()=> {
+                        <button className="w-100 btn btn-outline-success" onClick={()=> {
                            ManagerAction.listAllOrders();
                         }}>All orders</button>
                     </div>
                     <div>
-                        <button className="w-100" onClick={()=> {
+                        <button className="w-100 btn btn-outline-success" onClick={()=> {
                             ManagerAction.listReadyToShip();
                         }}>Orders Ready To Ship</button>
                     </div>

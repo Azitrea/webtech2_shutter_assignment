@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('./managerService');
+var Srs = require('../Service/managerService');
 const managerService = new Srs();
 
 //List everything
