@@ -32,7 +32,7 @@ class ReadyToShip extends React.Component {
                             {
                                 this.state.readyToShip.map((ready) => {
                                     return (
-                                        <li key={ready.OrderID} onClick={()=> {
+                                        <li className="list-group-item" key={ready.OrderID} onClick={()=> {
                                             ManagerAction.listCustomerByOrderID(ready);
                                         }}>{ready.OrderID} | {ready.status}</li>
                                     )
