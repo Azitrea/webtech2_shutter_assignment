@@ -461,6 +461,7 @@ dispatcher.register((data) => {
             ManagerStorage.emitChange();
         }
     ).catch((error) => {
+        console.log(error)
         error.then(errMsg => console.log(errMsg));
     });
 

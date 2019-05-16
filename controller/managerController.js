@@ -1,17 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('../Service/managerService');
+var Srs = require('../service/managerService');
 const managerService = new Srs();
 
 //List everything
-router.get('/list/:id', (req, res) => {
-    if (req.params['id'] === undefined || req.params['id'] === null || req.params['id'] === '') {
-        res.status(414).send({'err': 'Database name is not defined'});
-        return;
-    }
-
-    managerService.listAll(req.params['id'], (result) => {
+router.get('/list/customerData', (req, res) => {
+    managerService.listCustomerData((result) => {
         res.status(200).send(result);
     })
 });
@@ -72,7 +67,7 @@ router.post('/createInvoice', (req, res) => {
         return;
     }
 
-    managerService.createInvoince(req.body, (result) => {
+    managerService.createInvoice(req.body, (result) => {
         res.status(200).send(result);
     }, (cause) => {
         res.status(409).send({'err': cause});
@@ -84,7 +79,7 @@ router.get('/getInvoice/:orderID', (req,res) => {
         res.status(414).send({'err': 'Order id is not defined'});
         return;
     }
-    managerService.getInvoince(req.params['orderID'], (result) => {
+    managerService.getInvoice(req.params['orderID'], (result) => {
         res.status(200).send(result)
     }, (cause) => {
         res.status(404).send({"err": cause});

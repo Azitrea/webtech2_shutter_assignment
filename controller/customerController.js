@@ -1,17 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('../Service/customerService');
+var Srs = require('../service/customerService');
 const customerService = new Srs();
 
-//List everything from database by given databaseName
-router.get('/list/:id', (req, res) => {
-    if (req.params['id'] === undefined || req.params['id'] === null || req.params['id'] === ''){
-        res.status(414).send({'err':'Database name is not defined'});
-        return;
-    }
+//List customer data from database by given databaseName
+router.get('/list/customerData', (req, res) => {
+    customerService.listCustomerdat( (result) => {
+        res.status(200).send(result);
+    })
+});
 
-    customerService.listAll(req.params['id'], (result) => {
+//List shutterType from database by given databaseName
+router.get('/list/shutterType', (req, res) => {
+    customerService.listShutterType((result) => {
+        res.status(200).send(result);
+    })
+});
+
+//List Misc from database by given databaseName
+router.get('/list/Misc', (req, res) => {
+    customerService.listMisc( (result) => {
         res.status(200).send(result);
     })
 });
@@ -55,7 +64,7 @@ router.get('/order/:id/myOrders/:orderid', (req, res) => {
         return;
     }
 
-    customerService.myOrdersById(req.params['id'],req.params['orderid'], (result) => {
+    customerService.myShuttersById(req.params['id'],req.params['orderid'], (result) => {
         res.status(200).send(result);
     }, (cause) => {
         res.status(400).send({"err": cause});

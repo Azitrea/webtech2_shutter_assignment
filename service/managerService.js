@@ -15,19 +15,21 @@ function ManagerService(DAO) {
     if (DAO !== undefined && DAO !== null) {
         this.DAO = DAO;
     } else {
-        this.DAO = require('../DAO/DAO')
+        this.DAO = require('../DAO/ManagerDAO')
     }
 }
 
-ManagerService.prototype.listAll = function (coll, callback) {
-    this.DAO.readAll(coll, (requests) => {
-        callback(requests)
+//List Customers from database
+ManagerService.prototype.listCustomerData = function (callback) {
+    console.log("hello")
+    this.DAO.listCustomerData((result) => {
+        callback(result)
     })
 };
 
 //List order IDs ready to ship
 ManagerService.prototype.listReady = function (success, error) {
-    this.DAO.readAll('customerData', (result) => {
+    this.DAO.listCustomerData((result) => {
         if (result.length !== 0) {
             const readyOrders = [];
             for (let customer of result) {
@@ -49,7 +51,7 @@ ManagerService.prototype.listReady = function (success, error) {
 
 //List order IDs ready to ship
 ManagerService.prototype.listReadyIDs = function (success, error) {
-    this.DAO.readAll('customerData', (result) => {
+    this.DAO.listCustomerData((result) => {
         if (result.length !== 0) {
             const readyOrders = [];
             for (let customer of result) {
@@ -71,7 +73,7 @@ ManagerService.prototype.listReadyIDs = function (success, error) {
 
 //List All order ids
 ManagerService.prototype.listAllOrders = function (success, error) {
-    this.DAO.readAll('customerData', (result) => {
+    this.DAO.listCustomerData((result) => {
         if (result.length !== 0) {
             const orders = [];
             for (let customer of result) {
@@ -89,20 +91,16 @@ ManagerService.prototype.listAllOrders = function (success, error) {
     })
 };
 
-
 //Set order status
 ManagerService.prototype.setOrderStatus = function (ordID, success, error) {
-    let select = {"orderIDs.OrderID": ordID};
-    let data = {$set: {"orderIDs.$.status": 'Invoice Created'}};
-
-    this.DAO.updateOne("customerData", select, data, (result) => {
-        success()
+    this.DAO.setOrderStatus(ordID, (result)=> {
+        success(result);
     })
 };
 
 //Get customer by order ID
 ManagerService.prototype.getCustomerDataByOrderID = function (ordID, success, error) {
-    this.DAO.readAll('customerData', (result) => {
+    this.DAO.listCustomerData((result) => {
         if (result.length !== 0) {
             for (let customer of result) {
                 if (customer['orderIDs'].length !== 0) {
@@ -121,20 +119,20 @@ ManagerService.prototype.getCustomerDataByOrderID = function (ordID, success, er
 };
 
 //Creat invoice from customer data
-ManagerService.prototype.createInvoince = function (body, success, error) {
+ManagerService.prototype.createInvoice = function (body, success, error) {
     const ordID = body['id'];
     const InstallationDate = body['InstallationDate'];
     const paid = body['paid'];
     const signature = body['signature'];
-    this.DAO.readWithFilter('createdInvoices', {"orderID": ordID}, (invoiceResult) => {
+    this.DAO.readInvoices( ordID,(invoiceResult) => {
         if (invoiceResult.length === 0) {
             this.listReadyIDs((result) => {
                 if ((result.indexOf(ordID.toString()) > -1)) {
                     this.getCustomerDataByOrderID(ordID, async (result) => {
                         const keys = ['name', 'email', 'address', 'phone'];
-                        const generatedId = await this.DAO.getNextSequenceValue('invoiceid');
+                        const generatedId = await this.DAO.getNextInvoiceID();
                         const invoice = {};
-                        invoice['_id'] = generatedId[0]['sequence_value'].toString();
+                        invoice['_id'] = generatedId;
                         invoice['orderID'] = ordID;
                         invoice['customerID'] = result['_id'];
                         for (let i in keys) {
@@ -144,7 +142,7 @@ ManagerService.prototype.createInvoince = function (body, success, error) {
                         invoice['paid'] = paid;
                         invoice["shutters"] = [];
                         let totalPrice = 0;
-                        this.DAO.readWithFilter('orderedShutters', {"orderID": ordID}, (result) => {
+                        this.DAO.getOrderedShuttersList(ordID ,(result) => {
                             const keys = ['Window', 'shutterType', 'color', 'material', 'price', 'comment'];
                             for (let shutter of result) {
                                 const finishedShutter = {};
@@ -157,7 +155,7 @@ ManagerService.prototype.createInvoince = function (body, success, error) {
                             }
                             invoice['totalPrice'] = totalPrice;
                             invoice['signature'] = signature;
-                            this.DAO.insertOne('createdInvoices', invoice, (result) => {
+                            this.DAO.inserInvoice(invoice, (result) => {
                                 this.setOrderStatus(ordID, (result) => {
                                     logger.info(`Invoice created: ${invoice['_id']}`);
                                     success(invoice);
@@ -180,13 +178,11 @@ ManagerService.prototype.createInvoince = function (body, success, error) {
 };
 
 
-ManagerService.prototype.getInvoince = function (orderID, success, error) {
-  this.DAO.readWithFilter('createdInvoices', {"orderID": orderID}, (result) => {
-      if (result.length !== 0){
-          success(result)
-      }else {
-          error('Invoce is not existing')
-      }
+ManagerService.prototype.getInvoice = function (orderID, success, error) {
+  this.DAO.getCreatedInvoiceByOrderID(orderID, (result)=> {
+      success(result)
+  }, (err) => {
+      error(err)
   })
 };
 
