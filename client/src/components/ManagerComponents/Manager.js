@@ -40,6 +40,11 @@ class Manager extends React.Component {
                             ManagerAction.listReadyToShip();
                         }}>Orders Ready To Ship</button>
                     </div>
+                    <div>
+                        <button className="w-100 btn btn-outline-success" onClick={()=> {
+                            ManagerAction.showChart();
+                        }}>Popular Shutter Types</button>
+                    </div>
                 </div>
                 <div className="col-9">
                     <div id="manager"></div>

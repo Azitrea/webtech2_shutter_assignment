@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Srs = require('../service/managerService');
+var Srs = require('../service/ManagerService');
 const managerService = new Srs();
 
 //List everything
@@ -74,6 +74,7 @@ router.post('/createInvoice', (req, res) => {
     })
 });
 
+//Returns one invoice by order ID
 router.get('/getInvoice/:orderID', (req,res) => {
     if (req.params['orderID'] === undefined || req.params['orderID'] === null || req.params['orderID'] === '') {
         res.status(414).send({'err': 'Order id is not defined'});
@@ -83,6 +84,14 @@ router.get('/getInvoice/:orderID', (req,res) => {
         res.status(200).send(result)
     }, (cause) => {
         res.status(404).send({"err": cause});
+    })
+});
+
+
+//Returns data for chart
+router.get('/chart', (req, res) => {
+    managerService.getShutterTypeNumbers((result) => {
+        res.status(200).send(result);
     })
 });
 module.exports = router;

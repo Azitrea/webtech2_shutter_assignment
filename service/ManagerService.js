@@ -21,7 +21,6 @@ function ManagerService(DAO) {
 
 //List Customers from database
 ManagerService.prototype.listCustomerData = function (callback) {
-    console.log("hello")
     this.DAO.listCustomerData((result) => {
         callback(result)
     })
@@ -85,7 +84,7 @@ ManagerService.prototype.listAllOrders = function (success, error) {
             }
             success(orders);
         } else {
-            error('Customer data is empty');
+            error('No orders found');
         }
 
     })
@@ -184,6 +183,27 @@ ManagerService.prototype.getInvoice = function (orderID, success, error) {
   }, (err) => {
       error(err)
   })
+};
+
+//Return th most popular shutter types
+ManagerService.prototype.getShutterTypeNumbers = function(callback){
+    this.DAO.getShutterTypes((resultT) => {
+        const types = [];
+        for(let entity of resultT){
+            types.push({"id":entity['_id'], "shutterName": entity['shutterName'], "amount": 0})
+        }
+        this.DAO.getAllOrderedShutters((resultO) => {
+
+            for(let shutter of resultO){
+                for(let i in types){
+                    if (shutter['shutterType'] === types[i]['id']){
+                        types[i]['amount'] += 1;
+                    }
+                }
+            }
+            callback(types);
+        })
+    })
 };
 
 

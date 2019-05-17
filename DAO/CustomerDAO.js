@@ -129,7 +129,6 @@ function insertNewOrders(orderedShutters, customerID, orderID, success) {
             }
         };
         updateOne("customerData", select, data, () => {
-            console.log('update')
             success(orderedShutters['OrderID']);
         })
 

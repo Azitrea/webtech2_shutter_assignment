@@ -9,8 +9,7 @@ class ManagerStorage extends EventEmitter{
     _allOrders = [];
     _selectedOrder = null;
     _invoiceOrders = [];
-
-
+    _chart = [];
 
     emitChange(){
         this.emit('change')

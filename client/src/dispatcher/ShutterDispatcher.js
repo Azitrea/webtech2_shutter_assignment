@@ -17,6 +17,7 @@ import CustomerData from "../components/ManagerComponents/CustomerData";
 import CreateInvoice from "../components/ManagerComponents/CreateInvoice";
 import AllOrders from "../components/ManagerComponents/AllOrders";
 import ShowInvoice from "../components/ManagerComponents/ShowInvoice";
+import Chart from "../components/ManagerComponents/Chart";
 
 class ShutterDispatcher extends Dispatcher {
 
@@ -601,7 +602,6 @@ dispatcher.register((data) => {
     }
 
     const id = data.payload.payload;
-    console.log(id);
     fetch('/manager/getInvoice/'+ id, {
         headers: {
             "Content-Type": "application/json",
@@ -642,6 +642,39 @@ dispatcher.register((data) => {
     );
 
     CustomerStorage.emitChange();
+});
+
+
+dispatcher.register((data) =>{
+    if (data.payload.actionType !== "showChart") {
+        return;
+    }
+
+    fetch('/manager/chart', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    }).then(response => {
+        if (!response.ok) {
+            throw response.json();
+        } else {
+            return response.json();
+        }
+    })
+        .then(result => {
+
+            ManagerStorage._chart = result;
+            ManagerStorage.emitChange();
+        }).then(() => {
+        ReactDOM.render(
+            React.createElement(Chart),
+            document.getElementById('manager'));
+        ManagerStorage.emitChange();
+    }).catch((error) => {
+        error.then(errMsg => console.log(errMsg));
+    });
+    ManagerStorage.emitChange();
 });
 
 export default dispatcher;

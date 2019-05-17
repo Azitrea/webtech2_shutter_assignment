@@ -115,8 +115,6 @@ async function getNextInvoiceID() {
 
 //ListCustomerData
 function listCustomerData(callback) {
-    console.log("Dao")
-
     readAll("customerData", (result) => {
         callback(result)
     })
@@ -163,6 +161,18 @@ function insertInvoice(invoice, callback){
     })
 }
 
+function getShutterTypes(callback){
+    readAll("shutterType", (result) => {
+        callback(result);
+    })
+}
+
+function getAllOrderedShutters(callback){
+    readAll("orderedShutters", (result) => {
+        callback(result)
+    })
+}
+
 module.exports = {
     "readAll": readAll,
     "readWithFilter": readWithFilter,
@@ -176,5 +186,7 @@ module.exports = {
     "getCreatedInvoiceByOrderID": getCreatedInvoiceByOrderID,
     "readInvoices": readInvoices,
     "getOrderedShuttersList": getOrderedShuttersList,
-    "inserInvoice": insertInvoice
+    "inserInvoice": insertInvoice,
+    "getShutterTypes": getShutterTypes,
+    "getAllOrderedShutters": getAllOrderedShutters
 };

@@ -6,13 +6,13 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-const customerController = require('./controller/customerController');
+const customerController = require('./controller/CustomerController');
 app.use('/customer',customerController);
 
-const workerController = require('./controller/workerController');
+const workerController = require('./controller/WorkerController');
 app.use('/worker',workerController);
 
-const managerController = require('./controller/managerController');
+const managerController = require('./controller/ManagerController');
 app.use('/manager',managerController);
 
 //app.use(express.static('public'));

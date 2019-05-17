@@ -48,5 +48,12 @@ class ManagerAction {
             actionType: "renderInvoicePanel"
         })
     }
+
+    showChart(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "showChart"
+        })
+    }
+
 }
 export default new ManagerAction();

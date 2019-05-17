@@ -28,7 +28,7 @@ class CustomerList extends React.Component {
             <div className="row">
                 <div className="col-md-4"></div>
                 <div className="card col-4">
-                    <div className="card-header">Login</div>
+                    <div className="card-header h1 text-center">Login</div>
                     <div className="card-body">
                         <ul className="list-group">
                             {
