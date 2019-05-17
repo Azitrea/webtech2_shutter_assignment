@@ -167,7 +167,6 @@ class CreateOrder extends React.Component {
                                 <input
                                     onChange={(event) => {
                                         this.newOrder.comment = event.target.value;
-                                        this.setState({orders: this.newOrder})
                                     }}
                                     type="textfield"/>
                             </div>
