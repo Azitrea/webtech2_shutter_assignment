@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Customers from './components/CustomerComponents/Customers';
 import Worker from './components/WorkerComponents/Worker'
 import Manager from './components/ManagerComponents/Manager'

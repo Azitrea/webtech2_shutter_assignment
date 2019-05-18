@@ -15,7 +15,6 @@
   "scripts": {
     "start": "node ../server.js & npm run sass & react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha ../test",
     "eject": "react-scripts eject",
     "sass": "node-sass src/App.scss src/App.css"
   },

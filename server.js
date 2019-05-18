@@ -1,10 +1,15 @@
 var express = require('express');
+var path = require('path');
 var app = express();
 
 const port = 8080;
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, './client/build')));
+
 
 const customerController = require('./controller/CustomerController');
 app.use('/customer',customerController);
@@ -15,11 +20,9 @@ app.use('/worker',workerController);
 const managerController = require('./controller/ManagerController');
 app.use('/manager',managerController);
 
-//app.use(express.static('public'));
+const index = require('./controller/indexController');
+app.use('/', index);
 
-app.get('/', (req, res) => {
-   res.send(`Hello`);
-});
 
 app.listen(port, ()=>{
     console.log(`Server is listening on ${port}`)
