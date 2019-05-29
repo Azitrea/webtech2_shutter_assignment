@@ -114,7 +114,7 @@ router.post('/submitOrder', (req, res) =>{
         return;
     }
     customerService.submitOrder(req.body,
-        (id) => {res.status(200).send({"resText":"New order added to database", "resVal": id})},
+        () => {res.status(200).send({"resText":"New order added to database"})},
         (cause) => {res.status(409).send({"err:":cause})})
 });
 

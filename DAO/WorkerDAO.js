@@ -124,7 +124,7 @@ function listShutters(id, callback){
     });
 }
 
-//Update customer to Assembling
+//Update customer to Ready
 function updateCustomerOrdStat(customerID, orderID, callback){
     let select = {'_id': customerID, "orderIDs.OrderID" : orderID};
     let data = {$set: { "orderIDs.$.status" : 'Ready to Ship'}};

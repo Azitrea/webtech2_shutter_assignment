@@ -27,12 +27,12 @@ class CustomerList extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row pt-3">
                 <div className="col-1"></div>
                 <div className="col-5">
-                    <div>
+                    <div className="border-dark shadow-lg bg-dark text-white">
                         <div>
-                            <div className="text-center h1 border">Customer Data<br/></div>
+                            <div className="text-center h1 border p-1">Customer Data<br/></div>
                             {this.state.customer.map((customer) => {
                                 return (
                                     <span key={customer._id}>
@@ -45,14 +45,12 @@ class CustomerList extends React.Component {
                                 )
                             })}
                         </div>
-                        <div className="pt-2 text-center">
-                            <button className="btn btn-success w-25" onClick={() => {
+                        <div className="text-center">
+                            <button className="btn btn-success w-25 p-2" onClick={() => {
                                 CustomerActions.listMyOrders(CustomerStorage._selectedCustomer);
                             }}>List Orders
                             </button>
-                        </div>
-                        <div className="pt-2 text-center">
-                            <button className="btn btn-info w-25" onClick={() => {
+                            <button className="btn btn-info w-25 p-2" onClick={() => {
                                 CustomerActions.createOrderComponent()
                             }}>Create Order
                             </button>

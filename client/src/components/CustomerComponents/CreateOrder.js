@@ -1,6 +1,8 @@
 import React from 'react'
 import CustomerStorage from '../../storage/CustomerStorage';
 import CustomerActions from '../../actions/CustomerActions';
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css';
 
 class CreateOrder extends React.Component {
 
@@ -31,19 +33,33 @@ class CreateOrder extends React.Component {
     }
 
     handleOrders = () => {
-        let orders = this.state.orders;
+        if (this.newOrder.WindowHeight === '' || this.newOrder.WindowWidth === '' || this.newOrder.color === ''
+            || this.newOrder.material === '' || this.newOrder.shutterType === '') {
+            toast.notify('Empty field in the form, please fill out the required fields',
+                {position: 'bottom-right', duration: 2500});
+        } else {
+            let orders = this.state.orders;
 
-        orders.orderedShutters.push(
-            {
-                Window: this.newOrder.WindowWidth.toString() + ' X ' + this.newOrder.WindowHeight.toString(),
-                shutterType: this.newOrder.shutterType,
-                color: this.newOrder.color,
-                material: this.newOrder.material,
-                comment: this.newOrder.comment
+            orders.orderedShutters.push(
+                {
+                    Window: this.newOrder.WindowWidth.toString() + ' X ' + this.newOrder.WindowHeight.toString(),
+                    shutterType: this.newOrder.shutterType,
+                    color: this.newOrder.color,
+                    material: this.newOrder.material,
+                    comment: this.newOrder.comment
+                }
+            );
+
+            this.setState({orders});
+        }
+    };
+
+    showName = (id) => {
+        for (let shutter of this.state.shutterType){
+            if (shutter['_id'] === id){
+                return shutter['shutterName'];
             }
-        );
-
-        this.setState({orders});
+        }
     };
 
     _onChange() {
@@ -205,15 +221,29 @@ class CreateOrder extends React.Component {
                         </div>
 
                         <div className="border">
-                            {this.state.orders.orderedShutters.map((shutters, index) => {
-                                return (
-                                    <span key={index}>
-                                        Window size: {shutters.Window}<br/>
-                                        Shutter type: {shutters.shutterType} | Shutter color: {shutters.color} | Shutter material: {shutters.material}<br/>
-                                        Comment: {shutters.comment}<br/>
-                                    </span>
-                                )
-                            })}
+                            <table className="w-100">
+                                <tbody>
+                                <tr>
+                                    <td>Window size</td>
+                                    <td>Shutter Type</td>
+                                    <td>Color</td>
+                                    <td>material</td>
+                                    <td>Comment</td>
+                                </tr>
+                                {this.state.orders.orderedShutters.map((shutters, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{shutters.Window}</td>
+                                            <td>{this.showName(shutters.shutterType)}</td>
+                                            <td>{shutters.color}</td>
+                                            <td>{shutters.material}</td>
+                                            <td>{shutters.comment}</td>
+                                        </tr>
+                                    )
+                                })}
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>

@@ -43,9 +43,15 @@ WorkerService.prototype.setJobStatus = function(req, success, error){
         this.DAO.getShuttersByShID(id, (result) => {
             if(result.length !== 0){
                  this.DAO.updateShutterStatus(id, status, () => {
-                    this.updateOrderStatus(result[0]['orderID'], () => {
+                    this.updateOrderStatus(result[0]['orderID'], (result) => {
                         logger.info(`Order: ${id}  Status: ${status}`);
-                        success(`Order: ${id}  Status: ${status}`);
+                        if (result !== 'No'){
+                            this.listOrderIDs((orderIds) => {
+                                success({'resText': result, 'resVal': orderIds})
+                            });
+                        } else {
+                            success({'resText': `Order: ${id}  Status: ${status}`});
+                        }
                     });
                 })
             } else {
@@ -67,11 +73,11 @@ WorkerService.prototype.updateOrderStatus = function (orderID, callback){
        }
        if (finished) {
            this.DAO.updateCustomerOrdStat(result[0]['customerID'], orderID, (result) =>{
-               callback();
-               logger.info(`Order ${orderID} updated status: Assembling finished`);
+               callback(`Order ${orderID} updated status: Ready to Ship`);
+               logger.info(`Order ${orderID} updated status: Ready to Ship`);
            })
        }else {
-           callback()
+           callback('No');
        }
    })
 };

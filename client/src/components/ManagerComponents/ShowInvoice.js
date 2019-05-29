@@ -22,7 +22,6 @@ class ShowInvoice extends React.Component {
     }
 
     render() {
-        console.log(ManagerStorage._invoices[0]);
         return (
             <div className="row">
                 {this.state.invoice !== undefined && this.state.invoice !== null &&

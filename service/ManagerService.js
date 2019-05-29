@@ -157,7 +157,7 @@ ManagerService.prototype.createInvoice = function (body, success, error) {
                             this.DAO.inserInvoice(invoice, (result) => {
                                 this.setOrderStatus(ordID, (result) => {
                                     logger.info(`Invoice created: ${invoice['_id']}`);
-                                    success(invoice);
+                                    success('Invoice created');
                                 });
 
                             })

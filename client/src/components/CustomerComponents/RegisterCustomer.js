@@ -17,7 +17,6 @@ class RegisterCustomer extends React.Component {
             address: "",
             phone: ""
         }
-
     }
 
     _onChange() {
@@ -34,7 +33,7 @@ class RegisterCustomer extends React.Component {
 
     render() {
         return (
-            <div className="row p-3">
+            <div className="row p-3 w-auto border">
                 <div className="col-12">
 
                     <div className="row">

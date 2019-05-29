@@ -68,7 +68,7 @@ router.post('/createInvoice', (req, res) => {
     }
 
     managerService.createInvoice(req.body, (result) => {
-        res.status(200).send(result);
+        res.status(200).send({'resText': result});
     }, (cause) => {
         res.status(409).send({'err': cause});
     })

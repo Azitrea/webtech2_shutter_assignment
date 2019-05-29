@@ -1,6 +1,8 @@
 import {Dispatcher} from 'flux'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css';
 
 import CustomerStorage from '../storage/CustomerStorage'
 import CustomerOrders from '../components/CustomerComponents/CustomerOrders'
@@ -84,9 +86,9 @@ dispatcher.register((data) => {
         CustomerStorage.emitChange();
     }).catch((error) => {
         error.then(errMsg => {
-            console.log(errMsg)
-        });
-    });
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     CustomerStorage.emitChange();
 });
 
@@ -117,8 +119,10 @@ dispatcher.register((data) => {
         );
         CustomerStorage.emitChange();
     }).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     CustomerStorage.emitChange();
 });
 
@@ -143,8 +147,10 @@ dispatcher.register((data) => {
         CustomerStorage._oneCustomer = result;
         CustomerStorage.emitChange();
     }).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     CustomerStorage.emitChange();
 });
 
@@ -197,14 +203,19 @@ dispatcher.register((data) => {
     })
         .then((data) => {
             CustomerStorage._selectedCustomer = data.resVal;
+            toast.notify('Customer added', {
+                position: 'bottom-right',
+                duration: 2000
+            });
         }).then(() => {
         ReactDOM.render(
             React.createElement(SelectedCustomer),
             document.getElementById('shutterContent'))
     }).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
-
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     CustomerStorage.emitChange()
 });
 
@@ -274,10 +285,12 @@ dispatcher.register((data) => {
         }
     })
         .then((data) => {
-            console.log(data);
+             toast.notify(data['resText'], {position: 'bottom-right', duration: 2000});
         }).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
 
     CustomerStorage.emitChange()
 });
@@ -303,8 +316,10 @@ dispatcher.register((data) => {
         WorkerStorage._orders = result;
         WorkerStorage.emitChange();
     }).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     WorkerStorage.emitChange();
 
 });
@@ -327,7 +342,6 @@ dispatcher.register((data) => {
             return response.json()
         }
     }).then(result => {
-        console.log(result);
         WorkerStorage._shutters = result;
         WorkerStorage.emitChange();
     }).then(() => {
@@ -337,8 +351,10 @@ dispatcher.register((data) => {
             WorkerStorage.emitChange();
         }
     ).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     WorkerStorage.emitChange();
 
 });
@@ -366,14 +382,18 @@ dispatcher.register((data) => {
         }
     }).then((result) => {
         WorkerStorage._selectedShutter = data.payload.payload;
-        console.log(result);
+        toast.notify(result['response']['resText'], {position: 'bottom-right', duration: 2000});
     }).then(() => {
             ReactDOM.render(
                 React.createElement(ShutterParts),
                 document.getElementById('orderedShutterList'));
             WorkerStorage.emitChange();
         }
-    );
+    ).catch((error) => {
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
 
     WorkerStorage.emitChange()
 });
@@ -401,15 +421,20 @@ dispatcher.register((data) => {
         }
     }).then((data) => {
         WorkerStorage._selectedShutter = null;
-        console.log(data);
+        if(data['response']['resVal'] !== undefined){
+            WorkerStorage._orders = data['response']['resVal'];
+        }
+        toast.notify(data['response']['resText'], {position: 'bottom-right', duration: 2000});
     }).then(() => {
             ReactDOM.render(<div></div>,
                 document.getElementById('orderedShutterList'));
             WorkerStorage.emitChange();
         }
     ).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     WorkerStorage.emitChange()
 });
 
@@ -434,7 +459,7 @@ dispatcher.register((data) => {
         console.log(result);
         WorkerStorage._shutterParts = result;
         WorkerStorage.emitChange();
-    })
+    });
     WorkerStorage.emitChange();
 
 });
@@ -462,7 +487,7 @@ dispatcher.register((data) => {
             ManagerStorage.emitChange();
         }
     ).catch((error) => {
-        console.log(error)
+        console.log(error);
         error.then(errMsg => console.log(errMsg));
     });
 
@@ -483,7 +508,6 @@ dispatcher.register((data) => {
         return response.json();
     })
         .then(result => {
-            console.log(result)
             ManagerStorage._ordersReadyToShip = result;
             ManagerStorage.emitChange();
         }).then(() => {
@@ -531,7 +555,6 @@ dispatcher.register((data) => {
         return;
     }
     const id = data.payload.payload.OrderID;
-    console.log(id);
     fetch('/manager/customerByOrderId/'+ id, {
         headers: {
             "Content-Type": "application/json",
@@ -546,7 +569,6 @@ dispatcher.register((data) => {
     })
         .then(result => {
             ManagerStorage._selectedOrder = data.payload.payload;
-            console.log(result)
             ManagerStorage._oneCustomer = result;
             ManagerStorage.emitChange();
         }).then(() => {
@@ -580,18 +602,18 @@ dispatcher.register((data) => {
             return response.json();
         }
     }).then((data) => {
-        console.log(data);
-        ManagerStorage._invoices = data;
-        ManagerStorage.emitChange();
+        toast.notify(data['resText'], {position: 'bottom-right', duration: 2000});
     }).then(() => {
         ReactDOM.render(
-            <div>Invoice Created</div>,
+            <div></div>,
             document.getElementById('manager'));
         ManagerStorage.emitChange();
         }
     ).catch((error) => {
-        error.then(errMsg => console.log(errMsg));
-    });
+        error.then(errMsg => {
+            toast.notify(errMsg['err'], {position: 'bottom-right', duration: 2000});
+            console.log(errMsg);
+        })});
     WorkerStorage.emitChange()
 });
 
