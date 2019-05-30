@@ -14,7 +14,7 @@ class CustomerList extends React.Component {
     }
 
     _onChange() {
-        this.setState({customer: CustomerStorage._oneCustomer});
+        this.setState({customer: CustomerStorage._oneCustomer[0]});
     }
 
     componentDidMount() {
@@ -30,30 +30,49 @@ class CustomerList extends React.Component {
             <div className="row pt-3">
                 <div className="col-1"></div>
                 <div className="col-5">
-                    <div className="border-dark shadow-lg bg-dark text-white">
+                    <div className="border">
                         <div>
-                            <div className="text-center h1 border p-1">Customer Data<br/></div>
-                            {this.state.customer.map((customer) => {
-                                return (
-                                    <span key={customer._id}>
-                                        ID: {customer._id}<br/>
-                                        Name: {customer.name}<br/>
-                                        email: {customer.email}<br/>
-                                        address: {customer.address}<br/>
-                                        Phone Number: {customer.phone}<br/>
-                                        </span>
-                                )
-                            })}
+                            <div className="text-center h1 p-1">Customer Data<br/></div>
+                            <table className="table">
+                                <tbody>
+                                        <>
+                                            <tr>
+                                                <td>ID:</td>
+                                                <td>{this.state.customer._id}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>{this.state.customer.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>e-mail:</td>
+                                                <td>{this.state.customer.email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address:</td>
+                                                <td>{this.state.customer.address}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone:</td>
+                                                <td>{this.state.customer.phone}</td>
+                                            </tr>
+                                        </>
+                                </tbody>
+                            </table>
                         </div>
                         <div className="text-center">
-                            <button className="btn btn-success w-25 p-2" onClick={() => {
-                                CustomerActions.listMyOrders(CustomerStorage._selectedCustomer);
-                            }}>List Orders
-                            </button>
-                            <button className="btn btn-info w-25 p-2" onClick={() => {
-                                CustomerActions.createOrderComponent()
-                            }}>Create Order
-                            </button>
+                            <span className="p-2">
+                                <button className="btn btn-success w-25" onClick={() => {
+                                    CustomerActions.listMyOrders(CustomerStorage._selectedCustomer);
+                                }}>List Orders
+                                </button>
+                            </span>
+                            <span className="p-2">
+                                <button className="btn btn-info w-25" onClick={() => {
+                                    CustomerActions.createOrderComponent()
+                                }}>Create Order
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>

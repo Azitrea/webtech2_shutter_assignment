@@ -25,10 +25,11 @@ class ShowInvoice extends React.Component {
         return (
             <div className="row">
                 {this.state.invoice !== undefined && this.state.invoice !== null &&
-                    <>
-                <div className="col-4">
-                    <div className="h1">Invoice</div>
-                    <span>
+                <>
+                    <div className="col-2"></div>
+                    <div className="col-4 border-left">
+                        <div className="h1 text-center border-bottom">Invoice</div>
+                        <span>
                         Invoice ID: {this.state.invoice._id}<br/>
                         Order ID: {this.state.invoice.orderID}<br/>
                         Customer ID: {this.state.invoice.customerID}<br/>
@@ -41,25 +42,28 @@ class ShowInvoice extends React.Component {
                         Total Price: {this.state.invoice.totalPrice}<br/>
                         Signature: {this.state.invoice.signature}<br/>
                     </span>
-                </div>
-                <div className="col-4">
-                    <div className="h1">Ordered Shutter List</div>
-                    {
-                        this.state.orders.map((shutter) =>{
-                            return (
-                                <span key={shutter.shutterID}>Shutter ID: {shutter.shutterID} <br/>
-                                    Window Size: {shutter.Window} <br/>
-                                    Shutter Type: {shutter.shutterType} <br/>
-                                    Window color: {shutter.color} <br/>
-                                    Window material: {shutter.material} <br/>
-                                    Price: {shutter.price} <br/>
-                                    Comment: {shutter.comment} <br/>
-                                </span>
-                            )
-                        })
-                    }
-                </div>
-                        <div className="col-4"></div>
+                    </div>
+                    <div className="col-4 border-left">
+                        <div className="h1 text-center border-bottom">Ordered Shutter List</div>
+                        {
+                            this.state.orders.map((shutter) => {
+                                return (
+                                    <div key={shutter.shutterID} className="border-bottom pb-3">
+                                        <span>
+                                            Shutter ID: {shutter.shutterID} <br/>
+                                            Window Size: {shutter.Window} <br/>
+                                            Shutter Type: {shutter.shutterType} <br/>
+                                            Window color: {shutter.color} <br/>
+                                            Window material: {shutter.material} <br/>
+                                            Price: {shutter.price} <br/>
+                                            Comment: {shutter.comment} <br/>
+                                        </span>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    <div className="col-2"></div>
                 </>
                 }
             </div>

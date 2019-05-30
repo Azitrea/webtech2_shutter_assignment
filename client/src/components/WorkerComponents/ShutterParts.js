@@ -51,7 +51,7 @@ class ShutterParts extends React.Component {
                             <span>Wooden sheets: {this.state.shutterParts.Wooden_sheet}</span><br/>
 
                         </div>
-                        <div>
+                        <div className="text-center p-2">
                             <button className="btn btn-outline-success" onClick={() => {
                                 WorkerActions.setStatusToFinished(WorkerStorage._selectedShutter);
                             }

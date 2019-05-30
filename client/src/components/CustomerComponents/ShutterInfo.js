@@ -27,6 +27,7 @@ class ShutterInfo extends React.Component {
                 {
                     this.state.shutterInfo !== undefined &&
                     <div>
+                        <div className="h1 text-center">Order Information</div>
                         <ul className="list-group">
                             {this.state.shutterInfo.map((item) =>(
                                 <li className="list-group-item" key={item._id}>

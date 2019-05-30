@@ -1,6 +1,14 @@
 import ShutterDispatcher from '../dispatcher/ShutterDispatcher'
 
 class ManagerAction {
+
+    loadManager(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "loadManagerComponent",
+            payload: null
+        })
+    }
+
     listCustomers(){
         ShutterDispatcher.handleViewAction({
             actionType: "listCustomerData",

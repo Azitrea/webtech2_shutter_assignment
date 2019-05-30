@@ -42,7 +42,7 @@ class CreateInvoice extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">Order ID:</div>
                         <div className="col-4">
-                              <span>{this.data.id}</span>
+                              <span className="h5">{this.data.id}</span>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -51,12 +51,12 @@ class CreateInvoice extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">InstallationDate:</div>
                         <div className="col-4">
-                            <input
+                            <input className="form-control w-75"
                                 onChange={(event) => {
                                     this.data.InstallationDate = event.target.value;
                                     this.setState({invoice: this.data});
                                 }}
-                                type="text"/>
+                                type="date"/>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -65,12 +65,16 @@ class CreateInvoice extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">paid:</div>
                         <div className="col-4">
-                            <input
+                            <select className="browser-default custom-select w-75"
                                 onChange={(event) => {
-                                    this.data.paid = event.target.value;
-                                    this.setState({invoice: this.data});
+                                    this.data.paid = event.target.value
                                 }}
-                                type="text"/>
+                            >
+                                <option defaultValue={null} label="Choose One"></option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+
+                            </select>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -79,7 +83,7 @@ class CreateInvoice extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">Signature:</div>
                         <div className="col-4">
-                            <input
+                            <input className="form-control w-75"
                                 onChange={(event) => {
                                     this.data.signature = event.target.value;
                                     this.setState({invoice: this.data});
@@ -89,10 +93,11 @@ class CreateInvoice extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-5"></div>
-                        <div className="col-2">
+                        <div className="col-2 pt-3">
                             <button
                                 onClick={() => {
                                     ManagerAction.createInvoice(this.state.invoice);
+                                    console.log(this.state.invoice)
                                 }}
                                 className="btn btn-success">
                                 Create Invoice

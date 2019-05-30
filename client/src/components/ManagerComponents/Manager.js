@@ -24,24 +24,24 @@ class Manager extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-3">
+                <div className="col-3 text-center pt-2">
                    <div>
-                       <button className="w-100 btn btn-outline-success" onClick={()=> {
+                       <button className="w-75 btn btn-outline-info shadow-sm" onClick={()=> {
                            ManagerAction.listCustomers();
                        }}>List customers</button>
                    </div>
                     <div>
-                        <button className="w-100 btn btn-outline-success" onClick={()=> {
+                        <button className="w-75 btn btn-outline-info shadow-sm" onClick={()=> {
                            ManagerAction.listAllOrders();
                         }}>All orders</button>
                     </div>
                     <div>
-                        <button className="w-100 btn btn-outline-success" onClick={()=> {
+                        <button className="w-75 btn btn-outline-info shadow-sm" onClick={()=> {
                             ManagerAction.listReadyToShip();
                         }}>Orders Ready To Ship</button>
                     </div>
                     <div>
-                        <button className="w-100 btn btn-outline-success" onClick={()=> {
+                        <button className="w-75 btn btn-outline-info shadow-sm" onClick={()=> {
                             ManagerAction.showChart();
                         }}>Popular Shutter Types</button>
                     </div>

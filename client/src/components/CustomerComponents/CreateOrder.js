@@ -3,6 +3,8 @@ import CustomerStorage from '../../storage/CustomerStorage';
 import CustomerActions from '../../actions/CustomerActions';
 import toast from 'toasted-notes'
 import 'toasted-notes/src/styles.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 
 class CreateOrder extends React.Component {
 
@@ -55,8 +57,8 @@ class CreateOrder extends React.Component {
     };
 
     showName = (id) => {
-        for (let shutter of this.state.shutterType){
-            if (shutter['_id'] === id){
+        for (let shutter of this.state.shutterType) {
+            if (shutter['_id'] === id) {
                 return shutter['shutterName'];
             }
         }
@@ -82,43 +84,44 @@ class CreateOrder extends React.Component {
         return (
             <>
                 <div className="h1 text-center border">Add new order to the cart</div>
+                <div className="text-right"><small>* required</small></div>
                 <div className="row p-3">
                     <div className="col-12">
 
                         <div className="row">
                             <div className="col-2"></div>
-                            <div className="col-4 text-center">Window width:</div>
+                            <div className="col-4 text-center">Window width*:</div>
                             <div className="col-4">
-                                <input
-                                    onChange={(event) => {
-                                        this.newOrder.WindowWidth = event.target.value;
-                                    }}
-                                    type="number"/>
+                                <input className="form-control"
+                                       onChange={(event) => {
+                                           this.newOrder.WindowWidth = event.target.value;
+                                       }}
+                                       type="number"/>
                             </div>
                             <div className="col-2"></div>
                         </div>
 
                         <div className="row">
                             <div className="col-2"></div>
-                            <div className="col-4 text-center">Window height:</div>
+                            <div className="col-4 text-center">Window height*:</div>
                             <div className="col-4">
-                                <input
-                                    onChange={(event) => {
-                                        this.newOrder.WindowHeight = event.target.value;
-                                    }}
-                                    type="number"/>
+                                <input className="form-control"
+                                       onChange={(event) => {
+                                           this.newOrder.WindowHeight = event.target.value;
+                                       }}
+                                       type="number"/>
                             </div>
                             <div className="col-2"></div>
                         </div>
 
                         <div className="row">
                             <div className="col-2"></div>
-                            <div className="col-4 text-center">Shutter type:</div>
+                            <div className="col-4 text-center">Shutter type*:</div>
                             <div className="col-4">
-                                <select
-                                    onChange={(event) => {
-                                        this.newOrder.shutterType = event.target.value
-                                    }}
+                                <select className="browser-default custom-select"
+                                        onChange={(event) => {
+                                            this.newOrder.shutterType = event.target.value
+                                        }}
                                 >
                                     <option defaultValue={null} label="Choose One"></option>
                                     {this.state.shutterType.map((type) => {
@@ -135,12 +138,12 @@ class CreateOrder extends React.Component {
 
                         <div className="row">
                             <div className="col-2"></div>
-                            <div className="col-4 text-center">Shutter color:</div>
+                            <div className="col-4 text-center">Shutter color*:</div>
                             <div className="col-4">
-                                <select
-                                    onChange={(event) => {
-                                        this.newOrder.color = event.target.value
-                                    }}
+                                <select className="browser-default custom-select"
+                                        onChange={(event) => {
+                                            this.newOrder.color = event.target.value
+                                        }}
                                 >
                                     <option defaultValue={null} label="Choose One"></option>
                                     {this.state.color.map((color) => {
@@ -157,12 +160,12 @@ class CreateOrder extends React.Component {
 
                         <div className="row">
                             <div className="col-2"></div>
-                            <div className="col-4 text-center">Shutter material:</div>
+                            <div className="col-4 text-center">Shutter material*:</div>
                             <div className="col-4">
-                                <select
-                                    onChange={(event) => {
-                                        this.newOrder.material = event.target.value
-                                    }}
+                                <select className="browser-default custom-select"
+                                        onChange={(event) => {
+                                            this.newOrder.material = event.target.value
+                                        }}
                                 >
                                     <option defaultValue={null} label="Choose One"></option>
                                     {this.state.material.map((material) => {
@@ -180,17 +183,17 @@ class CreateOrder extends React.Component {
                             <div className="col-2"></div>
                             <div className="col-4 text-center">Comment:</div>
                             <div className="col-4">
-                                <input
-                                    onChange={(event) => {
-                                        this.newOrder.comment = event.target.value;
-                                    }}
-                                    type="textfield"/>
+                                <input className="form-control"
+                                       onChange={(event) => {
+                                           this.newOrder.comment = event.target.value;
+                                       }}
+                                       type="textfield"/>
                             </div>
                         </div>
 
                         <div className="row p-2">
-                            <div className="col-3"></div>
-                            <div className="col-3">
+                            <div className="col-2"></div>
+                            <div className="col-4 text-center">
                                 <button
                                     onClick={() => {
                                         this.handleOrders();
@@ -199,7 +202,7 @@ class CreateOrder extends React.Component {
                                     Add to cart
                                 </button>
                             </div>
-                            <div className="col-3">
+                            <div className="col-4 text-center">
                                 <div>
                                     <button
                                         onClick={() => {
@@ -217,11 +220,14 @@ class CreateOrder extends React.Component {
                                     </button>
                                 </div>
                             </div>
-                            <div className="col-3"></div>
+                            <div className="col-2"></div>
                         </div>
 
-                        <div className="border">
-                            <table className="w-100">
+                        <div>
+                            <div className="text-center h1">
+                                <FontAwesomeIcon icon={faShoppingCart}/>
+                            </div>
+                            <table className="table w-100 border">
                                 <tbody>
                                 <tr>
                                     <td>Window size</td>

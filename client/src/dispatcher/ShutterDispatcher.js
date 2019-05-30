@@ -20,6 +20,10 @@ import CreateInvoice from "../components/ManagerComponents/CreateInvoice";
 import AllOrders from "../components/ManagerComponents/AllOrders";
 import ShowInvoice from "../components/ManagerComponents/ShowInvoice";
 import Chart from "../components/ManagerComponents/Chart";
+import Customers from "../components/CustomerComponents/Customers";
+import Manager from "../components/ManagerComponents/Manager";
+import Worker from "../components/WorkerComponents/Worker";
+import ListOrders from "../components/WorkerComponents/ListOrders";
 
 class ShutterDispatcher extends Dispatcher {
 
@@ -33,6 +37,49 @@ class ShutterDispatcher extends Dispatcher {
 
 const dispatcher = new ShutterDispatcher();
 
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'loadCustomerComponent') {
+        return;
+    }
+    ReactDOM.render(
+        React.createElement(Customers),
+        document.getElementById('shutterContent')
+    );
+
+});
+
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'loadWorkerComponent') {
+        return;
+    }
+    ReactDOM.render(
+        React.createElement(Worker),
+        document.getElementById('shutterContent')
+    );
+
+});
+
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'loadManagerComponent') {
+        return;
+    }
+    ReactDOM.render(
+        React.createElement(Manager),
+        document.getElementById('shutterContent')
+    );
+
+});
+
+dispatcher.register((data) => {
+    if (data.payload.actionType !== 'loadOrders') {
+        return;
+    }
+    ReactDOM.render(
+        React.createElement(ListOrders),
+        document.getElementById('shutterContent')
+    );
+
+});
 
 //List all customers
 dispatcher.register((data) => {

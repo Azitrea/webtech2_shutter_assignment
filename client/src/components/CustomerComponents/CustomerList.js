@@ -2,6 +2,7 @@ import React from 'react';
 import CustomerActions from '../../actions/CustomerActions'
 import CustomerStorage from '../../storage/CustomerStorage'
 
+
 class CustomerList extends React.Component {
 
     constructor(props) {
@@ -25,10 +26,10 @@ class CustomerList extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row pt-1">
                 <div className="col-md-4"></div>
-                <div className="card col-4">
-                    <div className="card-header h1 text-center">Login</div>
+                <div className="card col-4 shadow-lg">
+                    <div className= "h1 text-center pt-3">Login</div>
                     <div className="card-body">
                         <ul className="list-group">
                             {
@@ -40,13 +41,13 @@ class CustomerList extends React.Component {
                                             onClick={() => {
                                                 CustomerActions.renderSelectedCustomer(customer._id);
                                             }}>
-                                            {customer._id}, {customer.name}<br/>
-                                            {customer.email}<br/>
+                                            Name: {customer.name}<br/>
+                                            e-mail: {customer.email}<br/>
                                         </li>)
                                 })}
                         </ul>
                     </div>
-                    <div className="card-footer"></div>
+                    <div></div>
                     <div className="col-md-4"></div>
                 </div>
             </div>

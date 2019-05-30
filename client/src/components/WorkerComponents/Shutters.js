@@ -28,11 +28,11 @@ class Shutters extends React.Component {
                 {
                     this.state.shutters !== undefined && this.state.shutters !== null &&
                     <div>
-                        <table>
+                        <table className="w-100">
                             <tbody>
                             {this.state.shutters.map((item) => (
                                 <tr className="list-group-item" key={item._id}>
-                                    <td>
+                                    <td className="w-100">
                                         <span>ID: {item._id}</span><br/>
                                         <span>Window Size: {item.Window}</span><br/>
                                         <span>Shutter Type: {item.shutterType}</span><br/>
@@ -43,7 +43,7 @@ class Shutters extends React.Component {
                                         <span>Price: {item.price}</span><br/>
                                     </td>
                                     <td>
-                                        <button className="btn btn-outline-success float-right" onClick={()=>{
+                                        <button disabled={item.status === 'Assembling finished'} className="btn btn-outline-success" onClick={()=>{
                                             WorkerActions.setStatusToUnderConst(item._id);
                                         }}>Select</button>
                                     </td>

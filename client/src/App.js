@@ -1,30 +1,24 @@
 import React from 'react';
 import './App.scss';
-import Customers from './components/CustomerComponents/Customers';
-import Worker from './components/WorkerComponents/Worker'
-import Manager from './components/ManagerComponents/Manager'
-import ReactDOM from "react-dom";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import CustomerActions from "./actions/CustomerActions";
+import WorkerActions from "./actions/WorkerActions";
+import ManagerAction from "./actions/ManagerAction";
+
+library.add(faStroopwafel);
 
 function App() {
-
-    function loadContent(contentToLoad) {
-        ReactDOM.render(
-            React.createElement(contentToLoad),
-            document.getElementById('shutterContent')
-        );
-    }
 
     return (
         <>
             <div className="bg-dark">
-                <button className="btn-info" onClick={() => loadContent(Customers)}>Customer</button>
-                <button className="btn-info" onClick={() => loadContent(Worker)}>Worker</button>
-                <button className="btn-info" onClick={() => loadContent(Manager)}>Manager</button>
+                <button className="btn-info" onClick={() => CustomerActions.loadCustomers()}>Customer</button>
+                <button className="btn-info" onClick={() => WorkerActions.loadWorker()}>Worker</button>
+                <button className="btn-info" onClick={() => ManagerAction.loadManager()}>Manager</button>
             </div>
             <div id="shutterContent"> </div>
         </>
-
-
     );
 }
 

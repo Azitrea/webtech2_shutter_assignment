@@ -25,8 +25,8 @@ class CustomerData extends React.Component {
     render() {
         return (
             <div>
-                <div className="card-header">Customer Data</div>
-                <div className="card-body">
+                <div className="text-center h2 pt-3">Customer data for order: {ManagerStorage._selectedOrder.OrderID}</div>
+                <div className="border-top card-body">
                     {this.state.oneCustomer !== undefined && this.state.oneCustomer !== null &&
                     <table>
                         <tbody>
@@ -46,7 +46,7 @@ class CustomerData extends React.Component {
                                 <table>
                                     <tbody>
                                     <tr>
-                                        <td>
+                                        <td className="pt-3">
                                             <button className="btn btn-outline-success" hidden={ManagerStorage._selectedOrder.status === "Invoice Created" ||  ManagerStorage._selectedOrder.status === "Order Accepted"} onClick={() => {
                                                 ManagerAction.renderInvoicePanel();
                                             }}
@@ -69,7 +69,7 @@ class CustomerData extends React.Component {
                     </table>
                     }
                 </div>
-                <div className="card-footer"></div>
+                <div className="border-bottom"></div>
             </div>
         )
     }

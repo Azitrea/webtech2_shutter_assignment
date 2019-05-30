@@ -2,6 +2,13 @@ import ShutterDispatcher from '../dispatcher/ShutterDispatcher'
 
 class CustomerActions {
 
+    loadCustomers(){
+        ShutterDispatcher.handleViewAction({
+            actionType: "loadCustomerComponent",
+            payload: null
+        })
+    }
+
     listCustomers() {
         ShutterDispatcher.handleViewAction({
             actionType: "listCustomers",

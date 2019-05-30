@@ -25,16 +25,16 @@ class AllOrders extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="col-3">
-                    <div className="card-header">All orders</div>
+                <div className="col-3 border">
+                    <div className="text-center h4 pt-3">All orders</div>
                     <div className="card-body">
-                        <ul className="list-group">
+                        <ul className="list-group text-center">
                             {
                                 this.state.allOrders.map((ready) => {
                                     return (
                                         <li className="list-group-item" key={ready.OrderID} onClick={()=> {
                                             ManagerAction.listCustomerByOrderID(ready);
-                                        }}>{ready.OrderID} | {ready.status}</li>
+                                        }}>{ready.OrderID} <br/> {ready.status}</li>
                                     )
                                 })}
                         </ul>

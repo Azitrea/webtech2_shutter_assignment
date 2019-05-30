@@ -23,26 +23,37 @@ class MCustomerList extends React.Component {
 
     render() {
         return (
-            <div>
-                    <div className="card-header">Login</div>
-                    <div className="card-body">
-                        <ul className="list-group">
-                            {
-                                this.state.customers.map((customer) => {
+            <div className="border text-center pr-2">
+                <div className="h1 pt-2">Customer List</div>
+                <div>
+
+
+                    <table className="table w-100 table-striped">
+                        <tbody>
+                        <tr className="h5">
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>e-mail</td>
+                            <td>Address</td>
+                            <td>Phone number</td>
+                        </tr>
+                        {
+                            this.state.customers.map((customer) => {
                                     return (
 
-                                        <li key={customer._id}
-                                            className="list-group-item">
-                                            Customer ID: {customer._id}<br/>
-                                            Customer name: {customer.name}<br/>
-                                            Customer e-mail: {customer.email}<br/>
-                                            Customer address: {customer.address}<br/>
-                                            Customer phone number: {customer.phone}<br/>
-                                        </li>)
-                                })}
-                        </ul>
-                    </div>
-                    <div className="card-footer"></div>
+                                        <tr key={customer._id}>
+                                            <td>{customer._id}</td>
+                                            <td>{customer.name}</td>
+                                            <td>{customer.email}</td>
+                                            <td>{customer.address}</td>
+                                            <td>{customer.phone}</td>
+                                        </tr>
+                                    )
+                                }
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

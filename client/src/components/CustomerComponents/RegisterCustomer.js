@@ -35,17 +35,19 @@ class RegisterCustomer extends React.Component {
         return (
             <div className="row p-3 w-auto border">
                 <div className="col-12">
-
+                    <div className="w-100 text-center pb-3">
+                        <div className="h1">Register new customer</div>
+                    </div>
                     <div className="row">
                         <div className="col-2"></div>
                         <div className="col-4 text-center">Name:</div>
                         <div className="col-4">
-                            <input
-                                onChange={(event) => {
-                                    this.data.name = event.target.value;
-                                    this.setState({newCustomer: this.data});
-                                }}
-                                type="text"/>
+                            <input className="form-control w-50"
+                                   onChange={(event) => {
+                                       this.data.name = event.target.value;
+                                       this.setState({newCustomer: this.data});
+                                   }}
+                                   type="text"/>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -54,12 +56,12 @@ class RegisterCustomer extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">e-mail:</div>
                         <div className="col-4">
-                            <input
-                                onChange={(event) => {
-                                    this.data.email = event.target.value;
-                                    this.setState({newCustomer: this.data});
-                                }}
-                                type="text"/>
+                            <input className="form-control w-50"
+                                   onChange={(event) => {
+                                       this.data.email = event.target.value;
+                                       this.setState({newCustomer: this.data});
+                                   }}
+                                   type="text"/>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -68,12 +70,12 @@ class RegisterCustomer extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">Address:</div>
                         <div className="col-4">
-                            <input
-                                onChange={(event) => {
-                                    this.data.address = event.target.value;
-                                    this.setState({newCustomer: this.data});
-                                }}
-                                type="text"/>
+                            <input className="form-control w-50"
+                                   onChange={(event) => {
+                                       this.data.address = event.target.value;
+                                       this.setState({newCustomer: this.data});
+                                   }}
+                                   type="text"/>
                         </div>
                         <div className="col-2"></div>
                     </div>
@@ -82,12 +84,12 @@ class RegisterCustomer extends React.Component {
                         <div className="col-2"></div>
                         <div className="col-4 text-center">Phone number:</div>
                         <div className="col-4">
-                            <input
-                                onChange={(event) => {
-                                    this.data.phone = event.target.value;
-                                    this.setState({newCustomer: this.data});
-                                }}
-                                type="text"/>
+                            <input className="form-control w-50"
+                                   onChange={(event) => {
+                                       this.data.phone = event.target.value;
+                                       this.setState({newCustomer: this.data});
+                                   }}
+                                   type="text"/>
                         </div>
                     </div>
                     <div className="row">
