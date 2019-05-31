@@ -30,7 +30,7 @@ class CustomerList extends React.Component {
             <div className="row pt-3">
                 <div className="col-1"></div>
                 {
-                    this.state.customer !== undefined && this.state.customer &&
+                    this.state.customer !== undefined && this.state.customer !== null &&
                     <div className="col-5">
                         <div className="border">
                             <div>
