@@ -96,7 +96,7 @@ router.post('/addCustomer', (req, res) => {
 
     customerService.addCustomer(req.body,
         (id) => {res.status(200).send({"resText":"New customer added to database", "resVal": id})},
-        (cause) => {res.status(409).send({"err:":cause})});
+        (cause) => {res.status(409).send({"err":cause})});
 });
 
 //Add new order to database

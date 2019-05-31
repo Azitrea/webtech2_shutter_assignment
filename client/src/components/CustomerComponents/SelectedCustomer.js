@@ -29,53 +29,56 @@ class CustomerList extends React.Component {
         return (
             <div className="row pt-3">
                 <div className="col-1"></div>
-                <div className="col-5">
-                    <div className="border">
-                        <div>
-                            <div className="text-center h1 p-1">Customer Data<br/></div>
-                            <table className="table">
-                                <tbody>
-                                        <>
-                                            <tr>
-                                                <td>ID:</td>
-                                                <td>{this.state.customer._id}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Name:</td>
-                                                <td>{this.state.customer.name}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>e-mail:</td>
-                                                <td>{this.state.customer.email}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Address:</td>
-                                                <td>{this.state.customer.address}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Phone:</td>
-                                                <td>{this.state.customer.phone}</td>
-                                            </tr>
-                                        </>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="text-center">
+                {
+                    this.state.customer !== undefined && this.state.customer &&
+                    <div className="col-5">
+                        <div className="border">
+                            <div>
+                                <div className="text-center h1 p-1">Customer Data<br/></div>
+                                <table className="table">
+                                    <tbody>
+                                    <>
+                                        <tr>
+                                            <td>ID:</td>
+                                            <td>{this.state.customer._id}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>{this.state.customer.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>e-mail:</td>
+                                            <td>{this.state.customer.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address:</td>
+                                            <td>{this.state.customer.address}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone:</td>
+                                            <td>{this.state.customer.phone}</td>
+                                        </tr>
+                                    </>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="text-center">
                             <span className="p-2">
                                 <button className="btn btn-success w-25" onClick={() => {
                                     CustomerActions.listMyOrders(CustomerStorage._selectedCustomer);
                                 }}>List Orders
                                 </button>
                             </span>
-                            <span className="p-2">
+                                <span className="p-2">
                                 <button className="btn btn-info w-25" onClick={() => {
                                     CustomerActions.createOrderComponent()
                                 }}>Create Order
                                 </button>
                             </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
                 <div className="col-5" id="customerContent">
 
                 </div>
