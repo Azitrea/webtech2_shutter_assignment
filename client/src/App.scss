@@ -1,3 +1,16 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+.navBar{
+  background: #4e555b;
+  padding: 1px;
+}
 
+.cursorPointer{
+  cursor: pointer;
+}
+
+.customIcon{
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}

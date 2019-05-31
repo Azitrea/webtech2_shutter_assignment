@@ -28,9 +28,14 @@ class ListOrders extends React.Component {
                 <div>
                     <div className="row">
                         <div className="col-6 text-center">
-                            <div className="h1">Shutters ready for Assembling</div>
-                            <table className="table text-center">
+                            <div className="h1 border-bottom">Shutters ready for Assembling</div>
+                            <div hidden={this.state.orders.length !== 0}>Currently no orders are available for assembling</div>
+                            <table className="table text-center" hidden={this.state.orders.length === 0}>
                                 <tbody>
+                                <tr className="">
+                                    <td className="h5">Order ID</td>
+                                    <td className="h5">Select</td>
+                                </tr>
                                 {this.state.orders.map((orderID) => {
                                     return (
                                         <tr key={orderID}>

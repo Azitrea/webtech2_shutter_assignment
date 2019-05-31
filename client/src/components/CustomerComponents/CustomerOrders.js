@@ -30,7 +30,7 @@ class CustomerOrders extends React.Component {
                     {
                         this.state.orderList !== undefined && this.state.orderList !== null &&
                         <div>
-                            <ul className="list-group">
+                            <ul className="list-group cursorPointer">
                                 {this.state.orderList.map((item) => (
                                     <li className="list-group-item" key={item.OrderID} onClick={() => {
                                         CustomerActions.listMyShutter(this.state.selectedCustomer, item.OrderID)

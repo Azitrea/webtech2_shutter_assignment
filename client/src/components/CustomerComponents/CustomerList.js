@@ -37,7 +37,7 @@ class CustomerList extends React.Component {
                                     return (
 
                                         <li key={customer._id}
-                                            className="list-group-item"
+                                            className="list-group-item cursorPointer"
                                             onClick={() => {
                                                 CustomerActions.renderSelectedCustomer(customer._id);
                                             }}>
